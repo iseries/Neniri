@@ -1,5 +1,5 @@
 {
-    "description": "",
+    "description": "Neniri App Package",
     "type": "neos-package",
     "name": "neniri/app",
     "require": {
