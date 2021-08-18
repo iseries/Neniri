@@ -3,7 +3,8 @@
     "type": "neos-package",
     "name": "neniri/app",
     "require": {
-        "neos/flow": "~7.1.0"
+        "neos/flow": "~7.1.0",
+        "neos/fluid-adaptor": "~7.1.0"
     },
     "require-dev": {
         "neos/kickstarter": "~7.1.0",
