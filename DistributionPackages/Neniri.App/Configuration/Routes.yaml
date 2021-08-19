@@ -1,0 +1,31 @@
+##
+# Backend
+
+-
+  name:  'Backend'
+  uriPattern: 'neniri/<BackendSubRoutes>'
+  defaults:
+    '@package': 'Neniri.App'
+    '@action': 'index'
+    '@format': 'html'
+  subRoutes:
+    'BackendSubRoutes':
+      package: 'Neniri.App'
+      suffix: 'Backend'
+
+##
+# Frontend
+
+-
+  name:  'Frontend'
+  uriPattern: '<FrontendSubRoutes>'
+  defaults:
+    '@package': 'Neniri.App'
+    '@action': 'index'
+    '@format': 'html'
+  subRoutes:
+    'FrontendSubRoutes':
+      package: 'Neniri.App'
+      suffix:  'Frontend'
+      #variables:
+       # 'defaultUriSuffix': '<defaultUriSuffix>'

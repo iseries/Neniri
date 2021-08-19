@@ -1,0 +1,15 @@
+-
+  name: 'Login'
+  uriPattern: 'login'
+  defaults:
+    '@controller': 'Backend\Login'
+    '@action': 'index'
+    '@format': 'html'
+
+-
+  name: 'Backend'
+  uriPattern: ''
+  defaults:
+    '@controller': 'Backend\Standard'
+    '@action': 'index'
+    '@format': 'html'

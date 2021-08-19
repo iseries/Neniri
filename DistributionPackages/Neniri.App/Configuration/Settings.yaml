@@ -1,0 +1,19 @@
+Neniri:
+  App:
+    # Run Neniri in debug mode
+    debugMode: false
+
+Neos:
+  Flow:
+    mvc:
+      routes:
+        'Neniri.App': true
+    http:
+      applicationToken: ApplicationName
+    security:
+      authentication:
+        providers:
+          'Neniri.App:AcpUser':
+            provider: 'PersistedUsernamePasswordProvider'
+          'Neniri.App:FrontendUser':
+            provider: 'PersistedUsernamePasswordProvider'

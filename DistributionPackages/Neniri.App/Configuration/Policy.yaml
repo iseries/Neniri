@@ -1,0 +1,42 @@
+privilegeTargets:
+  'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+
+    # Backend - Public
+    'Neniri.App.Backend:Login':
+      matcher: 'method(Neniri\App\Controller\Backend\LoginController->(?!initialize).*Action())'
+    # Backend - Protected
+    'Neniri.App.Backend:Standard':
+      matcher: 'method(Neniri\App\Controller\Backend\StandardController->(?!initialize).*Action())'
+
+    # Frontend - Public
+    'Neniri.App.Frontend:Standard':
+      matcher: 'method(Neniri\App\Controller\Frontend\StandardController->(?!initialize).*Action())'
+    # Frontend - Protected
+    'Neniri.App.Frontend:Account':
+      matcher: 'method(Neniri\App\Controller\Frontend\AccountController->(?!initialize).*Action())'
+
+roles:
+  'Neos.Flow:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'Neniri.App.Frontend:Standard'
+        permission: GRANT
+      -
+        privilegeTarget: 'Neniri.App.Backend:Login'
+        permission: GRANT
+
+  'Neniri.App:AcpUser':
+    label: Neniri ACP User
+    description: The role allows to get access to the neniri backend
+    privileges:
+      -
+        privilegeTarget: 'Neniri.App.Backend:Standard'
+        permission: GRANT
+
+  'Neniri.App:FrontendUser':
+    label: Neniri Frontend User
+    description: The role allows to get access frontend user specific actions
+    privileges:
+      -
+        privilegeTarget: 'Neniri.App.Frontend:Account'
+        permission: GRANT

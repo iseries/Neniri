@@ -1,0 +1,7 @@
+-
+  name: 'Frontend'
+  uriPattern: ''
+  defaults:
+    '@controller': 'Frontend\Standard'
+    '@action': 'index'
+    '@format': 'html'
