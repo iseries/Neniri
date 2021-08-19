@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Rene Rehme (renerehme.dev)">
     <meta name="description" content="Neniri - Admin Control Panel">
-    <link href="style.css" rel="stylesheet">
+    <link href="{f:uri.resource(path: 'Backend/Styles/Login.min.css', package: 'Neniri.App')}" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>
 <body>
-<f:flashMessages class="flashmessages" />
-<f:render section="Content" />
+<div class="wrapper">
+    <div class="login-container">
+        <f:flashMessages class="flashmessages" />
+        <f:render section="Content" />
+    </div>
+</div>
 </body>
 </html>
