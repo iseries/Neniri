@@ -7,6 +7,13 @@ use Neos\Flow\Security\Cryptography\HashService;
 
 class PasswordDto
 {
+
+    /**
+     * @Flow\Inject
+     * @var HashService
+     */
+    protected $hashService;
+
     /**
      * @var string
      */

@@ -5,8 +5,12 @@ namespace Neniri\App\Domain\Service;
  * This file is part of the Neniri.App package.
  */
 
+use Neniri\App\Domain\Model\AcpUser;
+use Neos\Flow\Security\Account;
+use Neos\Flow\Security\Policy\Role;
+use Neniri\App\Domain\Repository\AcpUserRepository;
+use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Annotations as Flow;
-use Neos\Neos\Utility\User as UserUtility;
 
 /**
  * The acp user creation service.
@@ -25,7 +29,7 @@ class AcpUserCreationService
      * @Flow\Inject
      * @var AcpUserRepository
      */
-    protected $AcpUserRepository;
+    protected $acpUserRepository;
 
     /**
      * @Flow\InjectConfiguration(path="acpUserRoleAdmin")
@@ -52,7 +56,7 @@ class AcpUserCreationService
         $acpUser->setAccount($account);
 
         // Persist user
-        $this->userRepository->add($acpUser);
+        $this->acpUserRepository->add($acpUser);
         $this->persistenceManager->whitelistObject($acpUser);
         $this->persistenceManager->whitelistObject($account);
 

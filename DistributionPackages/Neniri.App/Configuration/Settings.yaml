@@ -2,8 +2,8 @@ Neniri:
   App:
     # Run Neniri in debug mode
     debugMode: false
-    acpUserRoleAdmin: 'Admin'
-    acpUserRoleEditor: 'Editor'
+    acpUserRoleAdmin: 'Neniri.App:AdminRole'
+    acpUserRoleEditor: 'Neniri.App:EditorRole'
 
 Neos:
   Flow:
