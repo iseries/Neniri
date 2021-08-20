@@ -1,6 +1,10 @@
 <?php
 namespace Neniri\App\Domain\Model;
 
+/*
+ * This file is part of the Neniri.App package.
+ */
+
 use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
 use Neos\Flow\Security\Cryptography\HashService;

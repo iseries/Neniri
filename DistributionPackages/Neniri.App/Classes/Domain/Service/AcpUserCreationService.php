@@ -32,7 +32,7 @@ class AcpUserCreationService
     protected $acpUserRepository;
 
     /**
-     * @Flow\InjectConfiguration(path="acpUserRoleAdmin")
+     * @Flow\InjectConfiguration(path="acpUserRole")
      */
     protected $acpUserRole;
 

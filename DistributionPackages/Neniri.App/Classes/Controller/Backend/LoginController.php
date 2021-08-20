@@ -6,6 +6,7 @@ namespace Neniri\App\Controller\Backend;
  */
 
 use Psr\Http\Message\UriFactoryInterface;
+use Neos\Flow\Security\Exception\AuthenticationRequiredException;
 use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
@@ -29,7 +30,7 @@ class LoginController extends AbstractAuthenticationController
     }
 
     /**
-     * Is called after a request has been authenticated.
+     * Is called if authentication succeed.
      * @param \Neos\Flow\Mvc\ActionRequest $originalRequest
      * @return string
      */
@@ -38,8 +39,20 @@ class LoginController extends AbstractAuthenticationController
         if ($originalRequest !== null) {
             $this->redirectToRequest($originalRequest);
         }
-        $this->redirect('index', 'Standard');
+        $this->redirect('index', 'Backend\Standard');
     }
+
+    /**
+     * Is called if authentication failed.
+     * @param \Neos\Flow\Security\Exception\AuthenticationRequiredException $exception
+     * @return void
+     */
+    protected function onAuthenticationFailure(AuthenticationRequiredException $exception = null)
+    {
+        $this->addFlashMessage('Authentication failed.');
+        $this->redirect('index');
+    }
+
 
     /**
      * Logs the user out and redirects the user to the login form
