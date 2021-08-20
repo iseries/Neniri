@@ -5,6 +5,8 @@ namespace Neniri\App\Command;
  * This file is part of the Neniri.App package.
  */
 
+use Neniri\App\Domain\Service\AcpUserCreationService;
+use Neniri\App\Domain\Model\PasswordDto;
 use Neos\Flow\Package\PackageManager;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
@@ -18,6 +20,12 @@ class AcpUserCommandController extends CommandController
 {
     /**
      * @Flow\Inject
+     * @var AcpUserCreationService
+     */
+    protected $acpUserCreationService;
+
+    /**
+     * @Flow\Inject
      * @var PersistenceManagerInterface
      */
     protected $persistenceManager;
@@ -28,4 +36,27 @@ class AcpUserCommandController extends CommandController
      */
     protected $consoleOutput;
 
+    /**
+     * Create User on the Command Line
+     *
+     * @param string $email The email address, which also serves as the username.
+     * @param string $password This user's password.
+     * @param string $passwordRepeat This user's password again.
+     */
+    public function createCommand($email, $password, $passwordRepeat)
+    {
+        $passwordDto = new PasswordDto();
+        $passwordDto->setPassword($password);
+        $passwordDto->setPasswordConfirmation($passwordRepeat);
+
+        if(!$passwordDto->isPasswordEqual()) {
+            $this->outputLine('The passwords do not match.');
+            $this->quit(0);
+        }
+
+        $this->acpUserCreationService->createAccountAndUser($email, $passwordDto->cryptPassword());
+        $this->persistenceManager->persistAll();
+
+        $this->outputLine('The ACP User <b>"%s"</b> with password <b>"%s"</b> was added.', [$email, $password]);
+    }
 }

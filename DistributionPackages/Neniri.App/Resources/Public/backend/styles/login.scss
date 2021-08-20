@@ -35,6 +35,11 @@ $color-shadow: #0000002b;
   100% { transform: rotate(360deg); }
 }
 
+// mixins
+@mixin boxshadow {
+  box-shadow: 2px 2px 4px $color-shadow;
+}
+
 // lets go!
 html {
   body {
@@ -43,6 +48,32 @@ html {
     color: $color-secondary;
     background: url('../images/dl-telekomcloud-01.jpg') center center no-repeat;
     background-size: cover;
+    overflow: hidden;
+
+    .flashmessages {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      list-style-type: none;
+      display: flex;
+      background: #e20074;
+      color: white;
+      margin: 0;
+      padding: 15px;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      @include boxshadow;
+
+      .flashmessages-error {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+      }
+    }
 
     .login-wrapper {
       display: flex;
@@ -79,8 +110,8 @@ html {
             background: white;
             padding: 30px;
             border-radius: 5px;
-            box-shadow: 2px 2px 4px $color-shadow;
             border-top: 6px solid $color-primary;
+            @include boxshadow;
 
             fieldset {
               border: 0;

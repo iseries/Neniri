@@ -7,6 +7,14 @@
     '@format': 'html'
 
 -
+  name: 'Authenticate'
+  uriPattern: 'authenticate'
+  defaults:
+    '@controller': 'Backend\Login'
+    '@action': 'authenticate'
+    '@format': 'html'
+
+-
   name: 'Backend'
   uriPattern: ''
   defaults:

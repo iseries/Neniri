@@ -1,5 +1,4 @@
-// check if dom is ready
-document.addEventListener('DOMContentLoaded', function() {
+$(function() {
     initLogin();
 });
 
@@ -7,16 +6,14 @@ document.addEventListener('DOMContentLoaded', function() {
 * Base functions
 * */
 function initLogin() {
-    let disableLoginButtonOnClick = function() {
-        let buttonWapper = document.querySelector('.button');
-        let loginButton = buttonWapper.querySelector('input');
-        loginButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            buttonWapper.classList.add('loader');
-            e.target.value = '';
-            e.target.disabled = true;
+    let disableLoginButtonOnSubmit = function() {
+        $('form').submit(function() {
+            let buttonWapper = $('.button');
+            let loginButton = buttonWapper.find('input');
+            buttonWapper.addClass('loader');
+            loginButton.val('').prop('disabled', true);
         });
     }
 
-    disableLoginButtonOnClick();
+    disableLoginButtonOnSubmit();
 }
