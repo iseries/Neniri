@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/*!
+Author: Rene Rehme (renerehme.dev)
+Filename: Login.scss
+Compiled file: default.min.css
+*/
+// vendor imports
+@import '../../vendor/css/Normalize/normalize.css';
+@import '../../vendor/css/StrawberryGrid/StrawberryGrid';
+
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;600&display=swap');
+
+// variables
+$font-main: 'Signika Negative', sans-serif;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+
+html {
+  body {
+    font-family: $font-main;
+    font-weight: $font-weight-normal;
+  }
+}

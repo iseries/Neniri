@@ -1,15 +1,151 @@
 @charset "UTF-8";
 /*!
-Project: Neniri
 Author: Rene Rehme (renerehme.dev)
 Filename: Login.scss
 Compiled file: Login.min.css
 */
+// vendor imports
 @import '../../vendor/css/Normalize/normalize.css';
 @import '../../vendor/css/StrawberryGrid/StrawberryGrid';
 
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;600&display=swap');
+
+// variables
+$font-main: 'Signika Negative', sans-serif;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+$color-primary: #e20074;
+$color-primary-accent: #ff0485;
+$color-secondary: #262626;
+$color-white: #fff;
+$color-border: #cacaca;
+$color-border-active: #aaaaaa;
+$color-shadow: #0000002b;
+
+// animations
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// lets go!
 html {
   body {
-    background: url('../images/dl-telekomcloud-01.jpg') no-repeat;
+    font-family: $font-main;
+    font-weight: $font-weight-normal;
+    color: $color-secondary;
+    background: url('../images/dl-telekomcloud-01.jpg') center center no-repeat;
+    background-size: cover;
+
+    .login-wrapper {
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+
+      .login-inner {
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+
+        > div {
+          > div {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 10px;
+
+            img {
+              max-height: 30px;
+              width: auto;
+            }
+
+            span {
+              color: $color-primary;
+              font-size: 22px;
+              margin-left: 15px;
+            }
+          }
+
+          form {
+            background: white;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 4px $color-shadow;
+            border-top: 6px solid $color-primary;
+
+            fieldset {
+              border: 0;
+              display: flex;
+              flex-direction: column;
+              min-width: 380px;
+
+              input {
+                padding: 15px 20px;
+                background: $color-white;
+                margin-bottom: 10px;
+                border: 1px solid $color-border;
+                outline: none;
+
+                &:active, &:focus {
+                  border: 1px solid $color-border-active;
+                }
+              }
+
+              .button {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+
+                input {
+                  background: $color-primary;
+                  margin-bottom: 0;
+                  color: $color-white;
+                  font-weight: $font-weight-bold;
+                  border: 0 !important;
+                  cursor: pointer;
+
+                  &:hover, &:focus {
+                    background: $color-primary-accent;
+                  }
+                }
+
+                &.loader {
+                  &:after {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    content: '';
+                    border: 3px solid $color-white;
+                    border-radius: 50%;
+                    border-top: 3px solid $color-primary-accent;
+                    width: 15px;
+                    height: 15px;
+                    -webkit-animation: spin 2s linear infinite; /* Safari */
+                    animation: spin 2s linear infinite;
+                  }
+
+                  input {
+                    background: $color-primary-accent;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -3,13 +3,19 @@
 <f:section name="Title">Login</f:section>
 
 <f:section name="Content">
-    <h1>A freshly created Fluid template!</h1>
-    <p>Some data set by the controller:</p>
-    <ul>
-        
-        <f:for each="{foos}" as="foo">
-            <li>{foo}</li>
-        </f:for>
-        
-    </ul>
+    <div>
+        <div>
+            <img src="{f:uri.resource(path: 'backend/images/logo.svg', package: 'Neniri.App')}">
+            <span>Admin Control Panel</span>
+        </div>
+        <f:form action="authenticate" method="post">
+            <fieldset>
+                <input placeholder="{f:translate(id: 'email')}" name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][username]" type="email" autofocus>
+                <input placeholder="{f:translate(id: 'password')}" name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][password]" type="password" value="">
+                <div class="button">
+                    <input type="submit" value="{f:translate(id: 'login')}" />
+                </div>
+            </fieldset>
+        </f:form>
+    </div>
 </f:section>
