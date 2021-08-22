@@ -1,6 +1,5 @@
 ##
 # Backend
-
 -
   name:  'Backend'
   uriPattern: 'neniri/<BackendSubRoutes>'
@@ -15,7 +14,6 @@
 
 ##
 # Frontend
-
 -
   name:  'Frontend'
   uriPattern: '<FrontendSubRoutes>'
@@ -27,5 +25,3 @@
     'FrontendSubRoutes':
       package: 'Neniri.App'
       suffix:  'Frontend'
-      #variables:
-       # 'defaultUriSuffix': '<defaultUriSuffix>'

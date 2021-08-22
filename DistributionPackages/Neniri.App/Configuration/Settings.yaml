@@ -16,6 +16,19 @@ Neos:
       authentication:
         providers:
           'Neniri.App:AcpUser':
-            provider: 'PersistedUsernamePasswordProvider'
+            label: 'Backend'
+            provider: PersistedUsernamePasswordProvider
+#            requestPatterns:
+#              'Neniri.App.Backend:StandardController':
+#                pattern: 'ControllerObjectName'
+#                patternOptions:
+#                  controllerObjectNamePattern: 'Neos\Neos\Controller\StandardController'
+            entryPoint: WebRedirect
+            entryPointOptions:
+              routeValues:
+                '@package': 'Neniri.App'
+                '@controller': 'Backend\Login'
+                '@action': 'index'
+                '@format': 'html'
           'Neniri.App:FrontendUser':
-            provider: 'PersistedUsernamePasswordProvider'
+            provider: PersistedUsernamePasswordProvider

@@ -16,7 +16,10 @@ privilegeTargets:
       matcher: 'method(Neniri\App\Controller\Frontend\AccountController->(?!initialize).*Action())'
 
 roles:
+  # For Everybody
   'Neos.Flow:Everybody':
+    label: Everybody
+    description: The role allows to get access to general actions
     privileges:
       -
         privilegeTarget: 'Neniri.App.Frontend:Standard'
@@ -24,7 +27,7 @@ roles:
       -
         privilegeTarget: 'Neniri.App.Backend:Login'
         permission: GRANT
-
+  # For ACP User
   'Neniri.App:AcpUser':
     label: Neniri ACP User
     description: The role allows to get access to the neniri backend
@@ -32,7 +35,7 @@ roles:
       -
         privilegeTarget: 'Neniri.App.Backend:Standard'
         permission: GRANT
-
+  # For Frontend User
   'Neniri.App:FrontendUser':
     label: Neniri Frontend User
     description: The role allows to get access frontend user specific actions
