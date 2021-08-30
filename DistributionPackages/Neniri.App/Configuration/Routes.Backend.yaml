@@ -1,9 +1,26 @@
 -
+  name: 'Backend'
+  uriPattern: ''
+  defaults:
+    '@controller': 'Backend\Standard'
+    '@action': 'index'
+    '@format': 'html'
+
+-
   name: 'Login'
   uriPattern: 'login'
   defaults:
     '@controller': 'Backend\Login'
     '@action': 'index'
+    '@format': 'html'
+
+
+-
+  name: 'Logout'
+  uriPattern: 'logout'
+  defaults:
+    '@controller': 'Backend\Logout'
+    '@action': 'logout'
     '@format': 'html'
 
 -
@@ -12,12 +29,4 @@
   defaults:
     '@controller': 'Backend\Login'
     '@action': 'authenticate'
-    '@format': 'html'
-
--
-  name: 'Backend'
-  uriPattern: ''
-  defaults:
-    '@controller': 'Backend\Standard'
-    '@action': 'index'
     '@format': 'html'

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Neniri - <f:render section="Title" /></title>
+    <title><f:render section="Title" /></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Rene Rehme (renerehme.dev)">
@@ -11,6 +11,18 @@
 </head>
 <body>
 <f:flashMessages class="flashmessages" />
-<f:render section="Content" />
+<div class="neniri-container">
+    <header>
+        <div>Logo</div>
+        <div>Search</div>
+        <div>Profile</div>
+    </header>
+    <main>
+        <f:render section="Content" />
+    </main>
+    <footer>
+        Neniri © 2021 - www.neniri.com
+    </footer>
+</div>
 </body>
 </html>
