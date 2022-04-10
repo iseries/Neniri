@@ -14,7 +14,7 @@ use Neos\Neos\Utility\User as UserUtility;
  * @Flow\Scope("singleton")
  * @api
  */
-class AcpUserService
+class UserService
 {
 
 }

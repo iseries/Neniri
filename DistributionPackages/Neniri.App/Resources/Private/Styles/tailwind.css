@@ -1,0 +1,80 @@
+/*
+ * Fonts
+ * ########################
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap');
+
+/*
+ * Tailwind
+ * ########################
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    html, body {
+        font-family: 'Ubuntu Mono', monospace;
+    }
+}
+
+/*
+ * Login
+ * ########################
+ */
+
+html, body {
+    @apply w-full h-full text-neutral-700;
+}
+
+.login-wrapper {
+    @apply w-full h-full flex justify-center items-center;
+}
+
+.login-inner {
+    @apply bg-white p-6 rounded-md shadow-md;
+}
+
+.custom-bg {
+    @apply absolute top-24 -z-10 h-2/3 w-full bg-green-500 bg-gradient-to-b from-white to-indigo-200;
+    transform: skew(0, -10deg) translateY(-24%);
+}
+
+.btn {
+    @apply bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-md shadow;
+}
+
+.btn-primary {
+    @apply bg-indigo-100 hover:bg-indigo-500 hover:border-indigo-500 hover:text-white text-gray-800 font-semibold py-2 px-4 border border-indigo-400 rounded-md shadow;
+}
+
+.flashmessages {
+    @apply flex;
+}
+
+.flashmessages-ok {
+    @apply text-center bg-green-100 shadow font-bold p-3 mb-3 w-full text-green-700 rounded-md;
+}
+
+.flashmessages-error {
+    @apply text-center bg-red-100 shadow font-bold p-3 mb-3 w-full text-red-700 rounded-md;
+}
+
+/**
+ * Forms
+ */
+
+.form-input {
+    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+}
+
+.form-checkbox, .form-radio {
+    @apply rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50;
+}
+
+.form-select, .form-textarea {
+    @apply block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+}

@@ -27,9 +27,9 @@ roles:
       -
         privilegeTarget: 'Neniri.App.Backend:Login'
         permission: GRANT
-  # For ACP User
-  'Neniri.App:AcpUser':
-    label: Neniri ACP User
+  # For User
+  'Neniri.App:User':
+    label: Neniri User
     description: The role allows to get access to the neniri backend
     privileges:
       -

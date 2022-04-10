@@ -3,12 +3,12 @@
     "type": "neos-package",
     "name": "neniri/app",
     "require": {
-        "neos/flow": "~7.1.0",
-        "neos/fluid-adaptor": "~7.1.0"
+        "neos/flow": "~8.0.0",
+        "neos/fluid-adaptor": "~8.0.0"
     },
     "require-dev": {
-        "neos/kickstarter": "~7.1.0",
-        "neos/buildessentials": "~7.1.0",
+        "neos/kickstarter": "~8.0.0",
+        "neos/buildessentials": "~8.0.0",
         "phpunit/phpunit": "~9.0",
         "mikey179/vfsstream": "~1.6"
     },

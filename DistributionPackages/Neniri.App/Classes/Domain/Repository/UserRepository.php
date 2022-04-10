@@ -11,7 +11,7 @@ use Neos\Flow\Persistence\Repository;
 /**
  * @Flow\Scope("singleton")
  */
-class AcpUserRepository extends Repository
+class UserRepository extends Repository
 {
 
 }

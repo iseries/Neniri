@@ -2,7 +2,7 @@ Neniri:
   App:
     # Run Neniri in debug mode
     debugMode: false
-    acpUserRole: 'Neniri.App:AcpUser'
+    userRole: 'Neniri.App:User'
     frontendUserRole: 'Neniri.App:FrontendUser'
 
 Neos:
@@ -15,7 +15,7 @@ Neos:
     security:
       authentication:
         providers:
-          'Neniri.App:AcpUser':
+          'Neniri.App:User':
             label: 'Backend'
             provider: PersistedUsernamePasswordProvider
 #            requestPatterns:

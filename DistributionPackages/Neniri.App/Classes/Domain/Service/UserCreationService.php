@@ -5,10 +5,10 @@ namespace Neniri\App\Domain\Service;
  * This file is part of the Neniri.App package.
  */
 
-use Neniri\App\Domain\Model\AcpUser;
+use Neniri\App\Domain\Model\User;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Security\Policy\Role;
-use Neniri\App\Domain\Repository\AcpUserRepository;
+use Neniri\App\Domain\Repository\UserRepository;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Annotations as Flow;
 
@@ -17,7 +17,7 @@ use Neos\Flow\Annotations as Flow;
  * @Flow\Scope("singleton")
  * @api
  */
-class AcpUserCreationService
+class UserCreationService
 {
     /**
      * @Flow\Inject
@@ -27,20 +27,20 @@ class AcpUserCreationService
 
     /**
      * @Flow\Inject
-     * @var AcpUserRepository
+     * @var UserRepository
      */
-    protected $acpUserRepository;
+    protected $userRepository;
 
     /**
-     * @Flow\InjectConfiguration(path="acpUserRole")
+     * @Flow\InjectConfiguration(path="userRole")
      */
-    protected $acpUserRole;
+    protected $userRole;
 
     /**
      * Creates am Account and User
      * @param string $email
      * @param string $password
-     * @return AcpUser
+     * @return User
      */
     public function createAccountAndUser($email, $password)
     {
@@ -48,18 +48,16 @@ class AcpUserCreationService
         $account = new Account();
         $account->setAccountIdentifier($email);
         $account->setCredentialsSource($password);
-        $account->setAuthenticationProviderName('Neniri.App:AcpUser');
-        $account->addRole(new Role($this->acpUserRole));
+        $account->setAuthenticationProviderName('Neniri.App:User');
+        $account->addRole(new Role($this->userRole));
 
         // Create the user
-        $acpUser = new AcpUser();
-        $acpUser->setAccount($account);
+        $user = new User();
+        $user->setAccount($account);
 
-        // Persist user
-        $this->acpUserRepository->add($acpUser);
-        $this->persistenceManager->whitelistObject($acpUser);
-        $this->persistenceManager->whitelistObject($account);
+        // Add user
+        $this->userRepository->add($user);
 
-        return $acpUser;
+        return $user;
     }
 }

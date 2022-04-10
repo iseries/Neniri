@@ -7,6 +7,22 @@
     '@format': 'html'
 
 -
+  name: 'Sign up'
+  uriPattern: 'signup'
+  defaults:
+    '@controller': 'Backend\Login'
+    '@action': 'signup'
+    '@format': 'html'
+
+-
+  name: 'Sign up'
+  uriPattern: 'pwforgotten'
+  defaults:
+    '@controller': 'Backend\Login'
+    '@action': 'pwforgotten'
+    '@format': 'html'
+
+-
   name: 'Login'
   uriPattern: 'login'
   defaults:
@@ -14,12 +30,11 @@
     '@action': 'index'
     '@format': 'html'
 
-
 -
   name: 'Logout'
   uriPattern: 'logout'
   defaults:
-    '@controller': 'Backend\Logout'
+    '@controller': 'Backend\Login'
     '@action': 'logout'
     '@format': 'html'
 

@@ -13,7 +13,7 @@ use Neos\Flow\Security\Cryptography\HashService;
  * @Flow\Entity
  * @ORM\InheritanceType("JOINED")
  */
-class AcpUser
+class User
 {
     /**
      * @var \Neos\Flow\Security\Account

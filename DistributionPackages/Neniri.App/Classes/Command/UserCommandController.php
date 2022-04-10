@@ -5,7 +5,7 @@ namespace Neniri\App\Command;
  * This file is part of the Neniri.App package.
  */
 
-use Neniri\App\Domain\Service\AcpUserCreationService;
+use Neniri\App\Domain\Service\UserCreationService;
 use Neniri\App\Domain\Model\PasswordDto;
 use Neos\Flow\Package\PackageManager;
 use Neos\Flow\Annotations as Flow;
@@ -16,13 +16,13 @@ use Neos\Flow\Cli\Response;
 use Neos\Flow\Persistence\PersistenceManagerInterface as PersistenceManagerInterface;
 use Neos\Flow\Mvc\Routing\ObjectPathMappingRepository as ObjectPathMappingRepository;
 
-class AcpUserCommandController extends CommandController
+class UserCommandController extends CommandController
 {
     /**
      * @Flow\Inject
-     * @var AcpUserCreationService
+     * @var UserCreationService
      */
-    protected $acpUserCreationService;
+    protected $userCreationService;
 
     /**
      * @Flow\Inject
@@ -54,7 +54,7 @@ class AcpUserCommandController extends CommandController
             $this->quit(0);
         }
 
-        $this->acpUserCreationService->createAccountAndUser($email, $passwordDto->cryptPassword());
+        $this->userCreationService->createAccountAndUser($email, $passwordDto->cryptPassword());
         $this->persistenceManager->persistAll();
 
         $this->outputLine('The ACP User <b>"%s"</b> with password <b>"%s"</b> was added.', [$email, $password]);

@@ -11,6 +11,7 @@ use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationControlle
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Mvc\ActionRequest;
+use Neos\Error\Messages\Message;
 
 class LoginController extends AbstractAuthenticationController
 {
@@ -25,6 +26,22 @@ class LoginController extends AbstractAuthenticationController
      * @return void
      */
     public function indexAction()
+    {
+
+    }
+
+
+    /**
+     * @return void
+     */
+    public function signUpAction()
+    {
+
+    }
+    /**
+     * @return void
+     */
+    public function pwForgottenAction()
     {
 
     }
@@ -49,7 +66,7 @@ class LoginController extends AbstractAuthenticationController
      */
     protected function onAuthenticationFailure(AuthenticationRequiredException $exception = null)
     {
-        $this->addFlashMessage('Authentication failed.');
+        $this->addFlashMessage('Authentication failed.', '', Message::SEVERITY_ERROR);
         $this->redirect('index');
     }
 
@@ -60,7 +77,7 @@ class LoginController extends AbstractAuthenticationController
      */
     public function logoutAction() {
         parent::logoutAction();
-        $this->addFlashMessage('Logout successful');
+        $this->addFlashMessage('Logout successful', '', Message::SEVERITY_OK);
         $this->redirect('index');
     }
 
