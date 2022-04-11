@@ -4,6 +4,13 @@ privilegeTargets:
     # Backend - Public
     'Neniri.App.Backend:Login':
       matcher: 'method(Neniri\App\Controller\Backend\LoginController->(?!initialize).*Action())'
+
+    'Neniri.App.Backend:PasswordForgotten':
+      matcher: 'method(Neniri\App\Controller\Backend\PasswordForgottenController->(?!initialize).*Action())'
+
+    'Neniri.App.Backend:Signup':
+      matcher: 'method(Neniri\App\Controller\Backend\SignupController->(?!initialize).*Action())'
+
     # Backend - Protected
     'Neniri.App.Backend:Standard':
       matcher: 'method(Neniri\App\Controller\Backend\StandardController->(?!initialize).*Action())'
@@ -11,6 +18,7 @@ privilegeTargets:
     # Frontend - Public
     'Neniri.App.Frontend:Standard':
       matcher: 'method(Neniri\App\Controller\Frontend\StandardController->(?!initialize).*Action())'
+
     # Frontend - Protected
     'Neniri.App.Frontend:Account':
       matcher: 'method(Neniri\App\Controller\Frontend\AccountController->(?!initialize).*Action())'
@@ -27,6 +35,13 @@ roles:
       -
         privilegeTarget: 'Neniri.App.Backend:Login'
         permission: GRANT
+      -
+        privilegeTarget: 'Neniri.App.Backend:PasswordForgotten'
+        permission: GRANT
+      -
+        privilegeTarget: 'Neniri.App.Backend:Signup'
+        permission: GRANT
+
   # For User
   'Neniri.App:User':
     label: Neniri User
@@ -35,6 +50,7 @@ roles:
       -
         privilegeTarget: 'Neniri.App.Backend:Standard'
         permission: GRANT
+
   # For Frontend User
   'Neniri.App:FrontendUser':
     label: Neniri Frontend User

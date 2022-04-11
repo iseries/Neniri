@@ -9,7 +9,6 @@ use Psr\Http\Message\UriFactoryInterface;
 use Neos\Flow\Security\Exception\AuthenticationRequiredException;
 use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 use Neos\Flow\Annotations as Flow;
-use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Mvc\ActionRequest;
 use Neos\Error\Messages\Message;
 
@@ -29,7 +28,6 @@ class LoginController extends AbstractAuthenticationController
     {
 
     }
-
 
     /**
      * @return void
@@ -69,7 +67,6 @@ class LoginController extends AbstractAuthenticationController
         $this->addFlashMessage('Authentication failed.', '', Message::SEVERITY_ERROR);
         $this->redirect('index');
     }
-
 
     /**
      * Logs the user out and redirects the user to the login form

@@ -8,7 +8,7 @@
             <h1 class="font-bold text-blue-900 text-xl text-center">Reset your password</h1>
             <h2 class="mb-4 text-md text-center">What’s your email address?</h1>
         </div>
-        <f:form action="authenticate" method="post">
+        <f:form action="reset" method="post">
             <fieldset class="flex gap-3 sm:block">
                 <input class="form-input mb-3" placeholder="email address" name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][username]" type="email" autofocus required>
             </fieldset>
@@ -17,7 +17,7 @@
                     <svg class="mr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                     <span>Send me a link</span>
                 </button>
-                {f:render(partial: 'Backend/Login/Links', arguments: { pwForgotten: false, login: true, signup: true })}
+                {f:render(partial: 'Backend/Components/Links', arguments: { pwForgotten: false, login: true, signup: true })}
             </div>
         </f:form>
     </div>

@@ -5,22 +5,25 @@
     '@controller': 'Backend\Standard'
     '@action': 'index'
     '@format': 'html'
+  httpMethods: [GET]
 
 -
   name: 'Sign up'
   uriPattern: 'signup'
   defaults:
-    '@controller': 'Backend\Login'
-    '@action': 'signup'
+    '@controller': 'Backend\Signup'
+    '@action': 'index'
     '@format': 'html'
+  httpMethods: [GET]
 
 -
-  name: 'Sign up'
-  uriPattern: 'pwforgotten'
+  name: 'Password forgotten'
+  uriPattern: 'reset'
   defaults:
-    '@controller': 'Backend\Login'
-    '@action': 'pwforgotten'
+    '@controller': 'Backend\PasswordForgotten'
+    '@action': 'index'
     '@format': 'html'
+  httpMethods: [GET]
 
 -
   name: 'Login'
@@ -29,6 +32,7 @@
     '@controller': 'Backend\Login'
     '@action': 'index'
     '@format': 'html'
+  httpMethods: [GET]
 
 -
   name: 'Logout'
@@ -37,6 +41,7 @@
     '@controller': 'Backend\Login'
     '@action': 'logout'
     '@format': 'html'
+  httpMethods: [POST]
 
 -
   name: 'Authenticate'
@@ -45,3 +50,4 @@
     '@controller': 'Backend\Login'
     '@action': 'authenticate'
     '@format': 'html'
+  httpMethods: [POST]
