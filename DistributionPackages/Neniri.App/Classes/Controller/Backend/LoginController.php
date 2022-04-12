@@ -5,6 +5,7 @@ namespace Neniri\App\Controller\Backend;
  * This file is part of the Neniri.App package.
  */
 
+use Neos\Flow\Mvc\Exception\StopActionException;
 use Psr\Http\Message\UriFactoryInterface;
 use Neos\Flow\Security\Exception\AuthenticationRequiredException;
 use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
@@ -14,11 +15,8 @@ use Neos\Error\Messages\Message;
 
 class LoginController extends AbstractAuthenticationController
 {
-    /**
-     * @Flow\Inject
-     * @var UriFactoryInterface
-     */
-    protected $uriFactory;
+    #[Flow\Inject]
+    protected UriFactoryInterface $uriFactory;
 
     /**
      * Show the login form
@@ -30,24 +28,10 @@ class LoginController extends AbstractAuthenticationController
     }
 
     /**
-     * @return void
-     */
-    public function signUpAction()
-    {
-
-    }
-    /**
-     * @return void
-     */
-    public function pwForgottenAction()
-    {
-
-    }
-
-    /**
      * Is called if authentication succeed.
-     * @param \Neos\Flow\Mvc\ActionRequest $originalRequest
-     * @return string
+     * @param ActionRequest|null $originalRequest
+     * @return void
+     * @throws StopActionException
      */
     protected function onAuthenticationSuccess(ActionRequest $originalRequest = null)
     {
@@ -59,8 +43,9 @@ class LoginController extends AbstractAuthenticationController
 
     /**
      * Is called if authentication failed.
-     * @param \Neos\Flow\Security\Exception\AuthenticationRequiredException $exception
+     * @param AuthenticationRequiredException|null $exception
      * @return void
+     * @throws StopActionException
      */
     protected function onAuthenticationFailure(AuthenticationRequiredException $exception = null)
     {
@@ -71,10 +56,11 @@ class LoginController extends AbstractAuthenticationController
     /**
      * Logs the user out and redirects the user to the login form
      * @return void
+     * @throws StopActionException
      */
     public function logoutAction() {
         parent::logoutAction();
-        $this->addFlashMessage('Logout successful', '', Message::SEVERITY_OK);
+        $this->addFlashMessage('Logout successful');
         $this->redirect('index');
     }
 
@@ -82,7 +68,7 @@ class LoginController extends AbstractAuthenticationController
      * Disable the default error flash message
      * @return boolean
      */
-    protected function getErrorFlashMessage()
+    protected function getErrorFlashMessage(): bool
     {
         return false;
     }

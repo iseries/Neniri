@@ -1,9 +1,9 @@
 Neniri:
   App:
-    # Run Neniri in debug mode
-    debugMode: false
-    userRole: 'Neniri.App:User'
-    frontendUserRole: 'Neniri.App:FrontendUser'
+    title: 'Neniri'
+    subtitle: ''
+    userRole: 'Neniri.App:Employee' # employee role
+    frontendUserRole: 'Neniri.App:Customer' # customer cole
 
 Neos:
   Flow:
@@ -15,7 +15,7 @@ Neos:
     security:
       authentication:
         providers:
-          'Neniri.App:User':
+          'Neniri.App:Employee':
             label: 'Backend'
             provider: PersistedUsernamePasswordProvider
 #            requestPatterns:
@@ -30,5 +30,5 @@ Neos:
                 '@controller': 'Backend\Login'
                 '@action': 'index'
                 '@format': 'html'
-          'Neniri.App:FrontendUser':
+          'Neniri.App:Customer':
             provider: PersistedUsernamePasswordProvider

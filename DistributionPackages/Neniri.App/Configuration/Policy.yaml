@@ -43,8 +43,8 @@ roles:
         permission: GRANT
 
   # For User
-  'Neniri.App:User':
-    label: Neniri User
+  'Neniri.App:Employee':
+    label: Neniri Employee User
     description: The role allows to get access to the neniri backend
     privileges:
       -
@@ -52,7 +52,7 @@ roles:
         permission: GRANT
 
   # For Frontend User
-  'Neniri.App:FrontendUser':
+  'Neniri.App:Customer':
     label: Neniri Frontend User
     description: The role allows to get access frontend user specific actions
     privileges:

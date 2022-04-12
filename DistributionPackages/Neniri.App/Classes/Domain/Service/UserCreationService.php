@@ -6,6 +6,7 @@ namespace Neniri\App\Domain\Service;
  */
 
 use Neniri\App\Domain\Model\User;
+use Neos\Flow\Persistence\Exception\IllegalObjectTypeException;
 use Neos\Flow\Security\Account;
 use Neos\Flow\Security\Policy\Role;
 use Neniri\App\Domain\Repository\UserRepository;
@@ -19,37 +20,28 @@ use Neos\Flow\Annotations as Flow;
  */
 class UserCreationService
 {
-    /**
-     * @Flow\Inject
-     * @var PersistenceManagerInterface
-     */
-    protected $persistenceManager;
+    #[Flow\Inject]
+    protected PersistenceManagerInterface $persistenceManager;
 
-    /**
-     * @Flow\Inject
-     * @var UserRepository
-     */
-    protected $userRepository;
-
-    /**
-     * @Flow\InjectConfiguration(path="userRole")
-     */
-    protected $userRole;
+    #[Flow\Inject]
+    protected UserRepository $userRepository;
 
     /**
      * Creates am Account and User
      * @param string $email
      * @param string $password
+     * @param string $role
      * @return User
+     * @throws IllegalObjectTypeException
      */
-    public function createAccountAndUser($email, $password)
+    public function createAccountAndUser(string $email, string $password, string $role): User
     {
         // Create the account
         $account = new Account();
         $account->setAccountIdentifier($email);
         $account->setCredentialsSource($password);
-        $account->setAuthenticationProviderName('Neniri.App:User');
-        $account->addRole(new Role($this->userRole));
+        $account->setAuthenticationProviderName($role);
+        $account->addRole(new Role($role));
 
         // Create the user
         $user = new User();
