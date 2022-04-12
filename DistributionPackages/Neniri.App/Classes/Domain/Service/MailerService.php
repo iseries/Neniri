@@ -20,21 +20,18 @@ use Neos\FluidAdaptor\View\StandaloneView;
  */
 class MailerService
 {
+    /**
+     * @Flow\InjectConfiguration(path="mailer.useSendmail")
+     * @var boolean
+     */
+    //#[Deprecated(path: 'mailer.useSendmail')]
+    protected bool $useSendmail;
 
     /**
+     * @Flow\InjectConfiguration(path="mailer.smtp")
      * @var array
      */
-    protected array $settings;
-
-    /**
-     * Inject settings
-     * @param array $settings
-     * @return void
-     */
-    private function injectSettings(array $settings): void
-    {
-        $this->settings = $settings['mailer'];
-    }
+    protected array $smtp;
 
     /**
      *  Send a mail
@@ -56,7 +53,7 @@ class MailerService
         if($this->settings['useSendmail'] === false) {
             $transport = Transport::fromDsn('sendmail://default');
         } else {
-            $dsn = 'smtp://'.$this->settings['smtp']['user'].':'.$this->settings['smtp']['password'].'@'.$this->settings['smtp']['host'].':'.$this->settings['smtp']['port'];
+            $dsn = 'smtp://'.$this->smtp['user'].':'.$this->smtp['password'].'@'.$this->smtp['host'].':'.$this->smtp['port'];
             $transport = Transport::fromDsn($dsn);
         }
 

@@ -58,7 +58,8 @@ class LoginController extends AbstractAuthenticationController
      * @return void
      * @throws StopActionException
      */
-    public function logoutAction() {
+    public function logoutAction()
+    {
         parent::logoutAction();
         $this->addFlashMessage('Logout successful');
         $this->redirect('index');

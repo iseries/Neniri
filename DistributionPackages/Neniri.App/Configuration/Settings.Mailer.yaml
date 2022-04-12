@@ -1,0 +1,14 @@
+Neniri:
+  App:
+    mailer:
+      # this email is used as "from" when sending emails
+      from: 'no-reply@neniri.de'
+      # set true, if you want to send mails via sendmail protocol.
+      # when true, following smtp settings will be ignored.
+      useSendmail: false
+      # smtp settings
+      smtp:
+        host: 'mail.your-server.de'
+        user: 'noreply@neniri.com'
+        password: 'gRf84B5Qth36Br2C'
+        port: 587

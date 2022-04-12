@@ -1,9 +1,7 @@
 Neniri:
   App:
-    title: 'Neniri'
-    subtitle: ''
-    userRole: 'Neniri.App:Employee' # employee role
-    frontendUserRole: 'Neniri.App:Customer' # customer cole
+    employeeRole: 'Neniri.App:Employee'
+    customerRole: 'Neniri.App:Customer'
 
 Neos:
   Flow:

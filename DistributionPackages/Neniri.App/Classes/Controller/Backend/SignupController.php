@@ -16,6 +16,12 @@ class SignupController extends AbstractBaseController
     protected MailerService $mailerService;
 
     /**
+     * @Flow\InjectConfiguration(path="mailer.from")
+     * @var string
+     */
+    protected string $from;
+
+    /**
      * Signup form
      * @return void
      */
@@ -43,7 +49,7 @@ class SignupController extends AbstractBaseController
         $fluid->assign('link', true);
 
         $mailerProperties = array(
-           'from' => 'no-reply@neniri.de',
+           'from' => $this->from,
            'to' => $email,
            'replyTo' => '',
            'cc' => '',
