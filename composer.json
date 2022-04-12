@@ -19,7 +19,8 @@
         }
     },
     "require": {
-        "neniri/app": "@dev"
+        "neniri/app": "@dev",
+        "symfony/mailer": "^6.0"
     },
     "repositories": {
         "distributionPackages": {
