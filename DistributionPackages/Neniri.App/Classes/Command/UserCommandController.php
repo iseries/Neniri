@@ -5,6 +5,7 @@ namespace Neniri\App\Command;
  * This file is part of the Neniri.App package.
  */
 
+use Neniri\App\Domain\Repository\UserRepository;
 use Neniri\App\Domain\Service\UserCreationService;
 use Neniri\App\Domain\Model\PasswordDto;
 use Neos\Flow\Cli\Exception\StopCommandException;
@@ -24,6 +25,9 @@ class UserCommandController extends CommandController
     protected UserCreationService $userCreationService;
 
     #[Flow\Inject]
+    protected UserRepository $userRepository;
+
+    #[Flow\Inject]
     protected PersistenceManagerInterface $persistenceManager;
 
     #[Flow\Inject]
@@ -36,7 +40,7 @@ class UserCommandController extends CommandController
      * ./flow user:create
      *
      * Create a customer user:
-     * ./flow user:create --customer true
+     * ./flow user:create --customer
      *
      * @param string $email The email address, which also serves as the username.
      * @param string $password This user's password.
@@ -64,6 +68,24 @@ class UserCommandController extends CommandController
         $this->userCreationService->createAccountAndUser($email, $passwordDto->cryptPassword(), $role);
         $this->persistenceManager->persistAll();
 
-        $this->outputLine('The User <b>"%s"</b> with password <b>"%s"</b> was added.', [$email, $password]);
+        $this->outputLine('The User <b>"%s"</b> with password <b>"%s"</b> and role <b>"%s"</b> was added.', [$email, $password, $role]);
+    }
+
+    /**
+     * Remove a User
+     *
+     * @param string $email
+     * @return void
+     * @throws IllegalObjectTypeException
+     */
+    public function removeCommand(string $email)
+    {
+        $user = $this->userRepository->findByIdentifier($email);
+
+        if($user) {
+            $this->userRepository->remove($user);
+        }
+
+        $this->outputLine('The User <b>"%s"</b> was removed.', [$email]);
     }
 }
