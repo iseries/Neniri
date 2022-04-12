@@ -17,6 +17,6 @@ Resources
 ---------
 
 * [Documentation](https://docs.neniri.com/)
-* [Report issues](https://github.com/iseries/neniri.app/issues) and
-  [send Pull Requests](https://github.com/iseries/neniri.app/pulls)
-  in the [main Neniri repository](https://github.com/iseries/neniri.app)
+* [Report issues](https://github.com/iseries/neniri/issues) and
+  [send Pull Requests](https://github.com/iseries/neniri/pulls)
+  in the [main Neniri repository](https://github.com/iseries/neniri)
