@@ -8,7 +8,7 @@ With Neniri you create projects to which you can assign incoming tickets. Ticket
 
 See the feature list to get an overview about the posibillities or just check the demo.
 
-<p><img src="./.github/logo.png" alt="pn4uma"></p>
+<p><img src="./.github/neniri.png" alt="pn4uma"></p>
 
 Install
 ---------
