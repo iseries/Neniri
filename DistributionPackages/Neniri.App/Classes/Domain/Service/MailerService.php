@@ -33,6 +33,7 @@ class MailerService
 
     /**
      *  Send a mail
+     *
      *  Example:
      *  $mailerProperties = array(
      *      'from' => 'no-reply@neniri.de',
@@ -43,6 +44,7 @@ class MailerService
      *      'subject' => 'Subject',
      *      'body' => $fluid->render(),
      *  );
+     *
      * @param array $mailerProps
      * @return void
      */
