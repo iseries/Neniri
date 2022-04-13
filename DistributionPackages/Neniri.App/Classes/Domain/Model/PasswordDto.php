@@ -30,6 +30,7 @@ class PasswordDto
      */
     protected $passwordConfirmation;
 
+
     /**
      * @param string $password
      */

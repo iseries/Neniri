@@ -30,6 +30,7 @@ class MailerService
     #[Flow\InjectConfiguration(path: 'mailer.smtp')]
     protected array $smtp;
 
+
     /**
      *  Send a mail
      *  Example:

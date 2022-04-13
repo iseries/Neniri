@@ -19,6 +19,7 @@ abstract class AbstractBaseController extends ActionController
     #[Flow\Inject]
     protected Context $securityContext;
 
+
     /**
      * Initializes the controller before invoking an action method.
      *

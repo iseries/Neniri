@@ -30,6 +30,7 @@ class UserService
 
     protected string $employeeAuthenticationProviderName = 'Neniri.App:User';
 
+
     /**
      * Returns all existing users
      *

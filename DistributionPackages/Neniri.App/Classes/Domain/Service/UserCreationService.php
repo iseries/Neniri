@@ -45,7 +45,6 @@ class UserCreationService
      * @param string $role
      * @param array $additionalData
      * @return User
-     * @throws IllegalObjectTypeException
      */
     public function createAccountAndUser(string $email, string $password, string $role, array $additionalData = array()): User
     {

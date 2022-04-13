@@ -20,6 +20,7 @@ class LoginController extends AbstractAuthenticationController
     #[Flow\Inject]
     protected UriFactoryInterface $uriFactory;
 
+
     /**
      * Show the login form
      * @return void
