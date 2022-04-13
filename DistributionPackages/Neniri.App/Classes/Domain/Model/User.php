@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Neos\Flow\Security\Cryptography\HashService;
 
 /**
+ * @author Rene Rehme <contact@renerehme.de>
  * @Flow\Entity
  * @ORM\InheritanceType("JOINED")
  */

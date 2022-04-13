@@ -16,21 +16,18 @@ use Neos\FluidAdaptor\View\StandaloneView;
 
 /**
  * Service for sending mails
+ *
  * @author Rene Rehme <contact@renerehme.de>
+ * @Flow\Scope("singleton")
+ * @api
  */
 class MailerService
 {
-    /**
-     * @Flow\InjectConfiguration(path="mailer.useSendmail")
-     * @var boolean
-     */
-    //#[Deprecated(path: 'mailer.useSendmail')]
+
+    #[Flow\InjectConfiguration(path: 'mailer.useSendmail')]
     protected bool $useSendmail;
 
-    /**
-     * @Flow\InjectConfiguration(path="mailer.smtp")
-     * @var array
-     */
+    #[Flow\InjectConfiguration(path: 'mailer.smtp')]
     protected array $smtp;
 
     /**

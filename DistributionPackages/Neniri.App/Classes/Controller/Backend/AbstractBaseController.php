@@ -12,6 +12,9 @@ use Neos\Flow\Mvc\View\ViewInterface;
 use Neos\Flow\Mvc\Controller\ControllerContext;
 use Neos\Flow\Security\Context;
 
+/**
+ * @author Rene Rehme <contact@renerehme.de>
+ */
 abstract class AbstractBaseController extends ActionController
 {
     /**

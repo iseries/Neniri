@@ -33,6 +33,7 @@ class UserCommandController extends CommandController
     #[Flow\Inject]
     protected ConsoleOutput $consoleOutput;
 
+
     /**
      * Command to create a User
      *
@@ -87,5 +88,9 @@ class UserCommandController extends CommandController
         }
 
         $this->outputLine('The User <b>"%s"</b> was removed.', [$email]);
+    }
+
+    public function testCommand() {
+       \Neos\Flow\var_dump($this->smtp);
     }
 }

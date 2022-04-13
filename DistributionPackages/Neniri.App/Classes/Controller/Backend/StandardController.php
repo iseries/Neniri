@@ -9,6 +9,9 @@ use Neniri\App\Controller\Backend\AbstractBaseController;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
 
+/**
+ * @author Rene Rehme <contact@renerehme.de>
+ */
 class StandardController extends AbstractBaseController
 {
     /**

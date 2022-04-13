@@ -15,6 +15,8 @@ use Neos\Flow\Annotations as Flow;
 
 /**
  * The acp user creation service.
+ *
+ * @author Rene Rehme <contact@renerehme.de>
  * @Flow\Scope("singleton")
  * @api
  */

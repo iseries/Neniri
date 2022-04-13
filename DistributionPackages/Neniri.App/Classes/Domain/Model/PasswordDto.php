@@ -9,9 +9,11 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Exception;
 use Neos\Flow\Security\Cryptography\HashService;
 
+/**
+ * @author Rene Rehme <contact@renerehme.de>
+ */
 class PasswordDto
 {
-
     /**
      * @Flow\Inject
      * @var HashService

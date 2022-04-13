@@ -8,6 +8,9 @@ namespace Neniri\App\Controller\Backend;
 use Neniri\App\Controller\Backend\AbstractBaseController;
 use Neos\Flow\Annotations as Flow;
 
+/**
+ * @author Rene Rehme <contact@renerehme.de>
+ */
 class PasswordForgottenController extends AbstractBaseController
 {
     /**

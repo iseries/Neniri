@@ -13,6 +13,9 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\ActionRequest;
 use Neos\Error\Messages\Message;
 
+/**
+ * @author Rene Rehme <contact@renerehme.de>
+ */
 class LoginController extends AbstractAuthenticationController
 {
     #[Flow\Inject]
