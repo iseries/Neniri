@@ -14,7 +14,7 @@ use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Annotations as Flow;
 
 /**
- * The acp user creation service.
+ * User creation service.
  *
  * @author Rene Rehme <contact@renerehme.de>
  * @Flow\Scope("singleton")
@@ -22,6 +22,16 @@ use Neos\Flow\Annotations as Flow;
  */
 class UserCreationService
 {
+
+    protected string $employeeAuthenticationProviderName = 'Neniri.App:User';
+
+    protected array $additionalData = array(
+        'firstname' => '',
+        'lastname' => '',
+        'company' => '',
+        'phone' => ''
+    );
+
     #[Flow\Inject]
     protected PersistenceManagerInterface $persistenceManager;
 
@@ -33,21 +43,30 @@ class UserCreationService
      * @param string $email
      * @param string $password
      * @param string $role
+     * @param array $additionalData
      * @return User
      * @throws IllegalObjectTypeException
      */
-    public function createAccountAndUser(string $email, string $password, string $role): User
+    public function createAccountAndUser(string $email, string $password, string $role, array $additionalData = array()): User
     {
         // Create the account
         $account = new Account();
         $account->setAccountIdentifier($email);
         $account->setCredentialsSource($password);
-        $account->setAuthenticationProviderName($role);
+        $account->setAuthenticationProviderName($this->employeeAuthenticationProviderName);
         $account->addRole(new Role($role));
 
         // Create the user
         $user = new User();
         $user->setAccount($account);
+
+        if(empty($additionalData)) {
+            $additionalData = $this->additionalData;
+        }
+        $user->setFirstName($additionalData['firstname']);
+        $user->setLastName($additionalData['lastname']);
+        $user->setCompany($additionalData['company']);
+        $user->setPhone($additionalData['phone']);
 
         // Add user
         $this->userRepository->add($user);

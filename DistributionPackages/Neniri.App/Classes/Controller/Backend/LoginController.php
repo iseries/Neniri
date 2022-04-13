@@ -5,7 +5,6 @@ namespace Neniri\App\Controller\Backend;
  * This file is part of the Neniri.App package.
  */
 
-use Neos\Flow\Mvc\Exception\StopActionException;
 use Psr\Http\Message\UriFactoryInterface;
 use Neos\Flow\Security\Exception\AuthenticationRequiredException;
 use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
@@ -34,7 +33,6 @@ class LoginController extends AbstractAuthenticationController
      * Is called if authentication succeed.
      * @param ActionRequest|null $originalRequest
      * @return void
-     * @throws StopActionException
      */
     protected function onAuthenticationSuccess(ActionRequest $originalRequest = null)
     {
@@ -48,7 +46,6 @@ class LoginController extends AbstractAuthenticationController
      * Is called if authentication failed.
      * @param AuthenticationRequiredException|null $exception
      * @return void
-     * @throws StopActionException
      */
     protected function onAuthenticationFailure(AuthenticationRequiredException $exception = null)
     {
@@ -59,7 +56,6 @@ class LoginController extends AbstractAuthenticationController
     /**
      * Logs the user out and redirects the user to the login form
      * @return void
-     * @throws StopActionException
      */
     public function logoutAction()
     {

@@ -1,7 +1,5 @@
 Neniri:
   App:
-    employeeRole: 'Neniri.App:Employee'
-    customerRole: 'Neniri.App:Customer'
 
 Neos:
   Flow:
@@ -13,7 +11,7 @@ Neos:
     security:
       authentication:
         providers:
-          'Neniri.App:Employee':
+          'Neniri.App:User':
             label: 'Backend'
             provider: PersistedUsernamePasswordProvider
 #            requestPatterns:
@@ -28,5 +26,3 @@ Neos:
                 '@controller': 'Backend\Login'
                 '@action': 'index'
                 '@format': 'html'
-          'Neniri.App:Customer':
-            provider: PersistedUsernamePasswordProvider

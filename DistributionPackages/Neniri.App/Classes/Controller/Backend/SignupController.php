@@ -18,14 +18,13 @@ class SignupController extends AbstractBaseController
     #[Flow\Inject]
     protected MailerService $mailerService;
 
-    /**
-     * @Flow\InjectConfiguration(path="mailer.from")
-     * @var string
-     */
+    #[Flow\InjectConfiguration(path: 'mailer.from')]
     protected string $from;
+
 
     /**
      * Signup form
+     *
      * @return void
      */
     public function indexAction()
@@ -35,6 +34,7 @@ class SignupController extends AbstractBaseController
 
     /**
      * Signup form send
+     *
      * @return void
      */
     public function signupAction()
@@ -67,6 +67,7 @@ class SignupController extends AbstractBaseController
 
     /**
      * Success response
+     *
      * @return void
      */
     public function successAction()
@@ -76,6 +77,7 @@ class SignupController extends AbstractBaseController
 
     /**
      * Failure response
+     *
      * @param string $error
      * @return void
      */

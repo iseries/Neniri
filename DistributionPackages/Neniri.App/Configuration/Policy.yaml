@@ -45,7 +45,7 @@ roles:
   # For User
   'Neniri.App:Employee':
     label: Neniri Employee User
-    description: The role allows to get access to the neniri backend
+    description: The role allows to get access employee user specific actions
     privileges:
       -
         privilegeTarget: 'Neniri.App.Backend:Standard'
@@ -54,7 +54,7 @@ roles:
   # For Frontend User
   'Neniri.App:Customer':
     label: Neniri Frontend User
-    description: The role allows to get access frontend user specific actions
+    description: The role allows to get access customer user specific actions
     privileges:
       -
         privilegeTarget: 'Neniri.App.Frontend:Account'

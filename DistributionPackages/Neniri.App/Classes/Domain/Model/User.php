@@ -7,6 +7,7 @@ namespace Neniri\App\Domain\Model;
 
 use Neos\Flow\Annotations as Flow;
 use Doctrine\ORM\Mapping as ORM;
+use Neos\Flow\Security\Account;
 use Neos\Flow\Security\Cryptography\HashService;
 
 /**
@@ -17,39 +18,132 @@ use Neos\Flow\Security\Cryptography\HashService;
 class User
 {
     /**
-     * @var \Neos\Flow\Security\Account
+     * @var Account
      * @ORM\OneToOne(cascade={"persist", "remove"})
      */
-    protected $account;
+    protected Account $account;
+
+    /**
+     * @var string
+     */
+    protected string $firstName;
+
+    /**
+     * @var string
+     */
+    protected string $lastName;
+
+    /**
+     * @var string
+     */
+    protected string $company = '';
+
+    /**
+     * @var string
+     */
+    protected string $phone = '';
 
     /**
      * @Flow\Inject
      * @Flow\Transient
      * @var HashService
      */
-    protected $hashService;
+    protected HashService $hashService;
+
 
     /**
      * @return string
      */
-    public function getAccountName()
+    public function getAccountIdentifier(): string
     {
         return $this->account->getAccountIdentifier();
     }
 
     /**
-     * @return \Neos\Flow\Security\Account
+     * @return string
      */
-    public function getAccount()
+    public function getFullName(): string
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
+
+    /**
+     * @return Account
+     */
+    public function getAccount(): Account
     {
         return $this->account;
     }
 
     /**
-     * @param \Neos\Flow\Security\Account $account
+     * @param Account $account
      */
-    public function setAccount($account)
+    public function setAccount(Account $account)
     {
         $this->account = $account;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     * @return void
+     */
+    public function setFirstName(string $firstName) {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     * @return void
+     */
+    public function setLastName(string $lastName) {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompany(): string
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param string $company
+     * @return void
+     */
+    public function setCompany(string $company) {
+        $this->company = $company;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @param string $phone
+     * @return void
+     */
+    public function setPhone(string $phone) {
+        $this->phone = $phone;
     }
 }

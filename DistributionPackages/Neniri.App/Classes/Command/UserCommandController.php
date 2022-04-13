@@ -5,9 +5,11 @@ namespace Neniri\App\Command;
  * This file is part of the Neniri.App package.
  */
 
+use Neniri\App\Domain\Model\User;
 use Neniri\App\Domain\Repository\UserRepository;
 use Neniri\App\Domain\Service\UserCreationService;
 use Neniri\App\Domain\Model\PasswordDto;
+use Neniri\App\Domain\Service\UserService;
 use Neos\Flow\Cli\Exception\StopCommandException;
 use Neos\Flow\Package\PackageManager;
 use Neos\Flow\Annotations as Flow;
@@ -18,6 +20,7 @@ use Neos\Flow\Cli\Response;
 use Neos\Flow\Persistence\Exception\IllegalObjectTypeException;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Mvc\Routing\ObjectPathMappingRepository;
+use Neos\Flow\Security\Account;
 
 class UserCommandController extends CommandController
 {
@@ -25,7 +28,7 @@ class UserCommandController extends CommandController
     protected UserCreationService $userCreationService;
 
     #[Flow\Inject]
-    protected UserRepository $userRepository;
+    protected UserService $userService;
 
     #[Flow\Inject]
     protected PersistenceManagerInterface $persistenceManager;
@@ -81,16 +84,49 @@ class UserCommandController extends CommandController
      */
     public function removeCommand(string $email)
     {
-        $user = $this->userRepository->findByIdentifier($email);
-
-        if($user) {
-            $this->userRepository->remove($user);
+        $removed = $this->userService->removeUser($email);
+        if($removed) {
+            $this->outputLine('The User <b>"%s"</b> was removed.', [$email]);
+        } else {
+            $this->outputLine('The User <b>"%s"</b> was not found.', [$email]);
         }
-
-        $this->outputLine('The User <b>"%s"</b> was removed.', [$email]);
     }
 
-    public function testCommand() {
-       \Neos\Flow\var_dump($this->smtp);
+    /**
+     * List all users
+     *
+     * @return void
+     */
+    public function listCommand()
+    {
+        $users = $this->userService->getUsers();
+
+        $tableRows = [];
+        $headerRow = ['Name', 'Email', 'Account(s)', 'Role(s)', 'Active'];
+
+        foreach ($users as $user) {
+            $tableRows[] = $this->getTableRowForUser($user);
+        }
+
+        $this->output->outputTable($tableRows, $headerRow);
+    }
+
+    /**
+     * Prepares a table row for output with data of the given User
+     *
+     * @param User $user The user
+     * @return array
+     */
+    protected function getTableRowForUser(User $user): array
+    {
+        $roleNames = [];
+        $accountIdentifiers = [];
+        $account = $user->getAccount();
+
+        foreach ($account->getRoles() as $role) {
+            /** @var Role $role */
+            $roleNames[] = $role->getIdentifier();
+        }
+        return [$user->getFullname(), $account->getAccountIdentifier(), $account->getAuthenticationProviderName(), implode(', ', $roleNames), 'yes'];
     }
 }
