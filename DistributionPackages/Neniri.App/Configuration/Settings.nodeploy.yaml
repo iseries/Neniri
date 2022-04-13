@@ -5,10 +5,10 @@ Neniri:
       from: 'no-reply@neniri.de'
       # set true, if you want to send mails via sendmail protocol.
       # when true, following smtp settings will be ignored.
-      useSendmail: true
+      useSendmail: false
       # smtp settings
       smtp:
-        host: ''
-        user: ''
-        password: ''
+        host: 'mail.your-server.de'
+        user: 'noreply@neniri.com'
+        password: 'gRf84B5Qth36Br2C'
         port: 587
