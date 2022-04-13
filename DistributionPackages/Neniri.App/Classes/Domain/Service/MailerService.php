@@ -47,7 +47,7 @@ class MailerService
      */
     public function send(array $mailerProps): void
     {
-        if($this->settings['useSendmail'] === false) {
+        if($this->useSendmail) {
             $transport = Transport::fromDsn('sendmail://default');
         } else {
             $dsn = 'smtp://'.$this->smtp['user'].':'.$this->smtp['password'].'@'.$this->smtp['host'].':'.$this->smtp['port'];
