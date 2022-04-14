@@ -13,7 +13,7 @@ use Neos\Flow\Annotations as Flow;
 /**
  * @author Rene Rehme <contact@renerehme.de>
  */
-class SignupController extends AbstractBaseController
+class RegistrationController extends AbstractBaseController
 {
     #[Flow\Inject]
     protected MailerService $mailerService;
@@ -48,7 +48,7 @@ class SignupController extends AbstractBaseController
         $fluid = new StandaloneView();
         $fluid->setFormat('html');
         $fluid->setLayoutRootPath('resource://Neniri.App/Private/Templates/Mail/Layouts/');
-        $fluid->setTemplatePathAndFilename('resource://Neniri.App/Private/Templates/Mail/Signup/ConfirmRegistration.html');
+        $fluid->setTemplatePathAndFilename('resource://Neniri.App/Private/Templates/Mail/Registration/ConfirmRegistration.html');
         $fluid->assign('link', true);
 
         $mailerProperties = array(

@@ -8,8 +8,8 @@ privilegeTargets:
     'Neniri.App.Backend:PasswordForgotten':
       matcher: 'method(Neniri\App\Controller\Backend\PasswordForgottenController->(?!initialize).*Action())'
 
-    'Neniri.App.Backend:Signup':
-      matcher: 'method(Neniri\App\Controller\Backend\SignupController->(?!initialize).*Action())'
+    'Neniri.App.Backend:Registration':
+      matcher: 'method(Neniri\App\Controller\Backend\RegistrationController->(?!initialize).*Action())'
 
     # Backend - Protected
     'Neniri.App.Backend:Standard':
@@ -39,7 +39,7 @@ roles:
         privilegeTarget: 'Neniri.App.Backend:PasswordForgotten'
         permission: GRANT
       -
-        privilegeTarget: 'Neniri.App.Backend:Signup'
+        privilegeTarget: 'Neniri.App.Backend:Registration'
         permission: GRANT
 
   # For User

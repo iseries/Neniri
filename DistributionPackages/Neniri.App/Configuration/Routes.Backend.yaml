@@ -11,7 +11,7 @@
   name: 'Sign up'
   uriPattern: 'signup'
   defaults:
-    '@controller': 'Backend\Signup'
+    '@controller': 'Backend\Registration'
     '@action': 'index'
     '@format': 'html'
   httpMethods: [GET]

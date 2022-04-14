@@ -45,34 +45,37 @@ class MailerService
      *      'body' => $fluid->render(),
      *  );
      *
-     * @param array $mailerProps
+     * @param array $props
      * @return void
      */
-    public function send(array $mailerProps): void
+    public function send(array $props): void
     {
-        if($this->useSendmail) {
-            $transport = Transport::fromDsn('sendmail://default');
-        } else {
+        // define default dsn
+        $dsn = 'sendmail://default';
+        // use smtp if sendmail is disabled in settings
+        if(!$this->useSendmail) {
             $dsn = 'smtp://'.$this->smtp['user'].':'.$this->smtp['password'].'@'.$this->smtp['host'].':'.$this->smtp['port'];
-            $transport = Transport::fromDsn($dsn);
         }
 
-        $mailer = new Mailer($transport);
+        // create mailer
+        $mailer = new Mailer(Transport::fromDsn($dsn));
 
+        // create email
         $email = new Email();
-        $email->from(new Address($mailerProps['from']));
-        $email->to(new Address($mailerProps['to']));
-        if (!empty($mailerProps['cc'])) {
-            $email->cc(new Address($mailerProps['cc']));
+        $email->from(new Address($props['from']));
+        $email->to(new Address($props['to']));
+        $email->subject($props['subject']);
+        $email->html($props['body']);
+
+        if (!empty($props['cc'])) {
+            $email->cc(new Address($props['cc']));
         }
-        if (!empty($mailerProps['bcc'])) {
-            $email->bcc(new Address($mailerProps['bcc']));
+        if (!empty($props['bcc'])) {
+            $email->bcc(new Address($props['bcc']));
         }
-        if (!empty($mailerProps['replyTo'])) {
-            $email->replyTo(new Address($mailerProps['replyTo']));
+        if (!empty($props['replyTo'])) {
+            $email->replyTo(new Address($props['replyTo']));
         }
-        $email->subject($mailerProps['subject']);
-        $email->html($mailerProps['body']);
 
         try {
             $mailer->send($email);
