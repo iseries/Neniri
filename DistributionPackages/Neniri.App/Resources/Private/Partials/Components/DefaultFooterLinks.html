@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:f="http://typo3.org/ns/Neos/FluidAdaptor/ViewHelpers"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="en">
+
 <hr class="w-full h-0 mt-3 mb-4 border-b-gray-200">
 
 <f:if condition="{pwForgotten} === true">
@@ -11,3 +16,5 @@
 <f:if condition="{signup} === true">
     <div class="text-center">Don't have an account? <f:link.action controller="Registration" action="index" class="text-indigo-500 hover:text-indigo-400">Join now!</f:link.action></div>
 </f:if>
+
+</html>
