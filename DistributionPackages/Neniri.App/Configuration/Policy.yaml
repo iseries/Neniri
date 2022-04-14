@@ -2,14 +2,14 @@ privilegeTargets:
   'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
 
     # Backend - Public
-    'Neniri.App.Backend:Login':
-      matcher: 'method(Neniri\App\Controller\Backend\LoginController->(?!initialize).*Action())'
+    'Neniri.App:Login':
+      matcher: 'method(Neniri\App\Controller\LoginController->(?!initialize).*Action())'
 
-    'Neniri.App.Backend:PasswordForgotten':
-      matcher: 'method(Neniri\App\Controller\Backend\PasswordForgottenController->(?!initialize).*Action())'
+    'Neniri.App:PasswordForgotten':
+      matcher: 'method(Neniri\App\Controller\PasswordForgottenController->(?!initialize).*Action())'
 
-    'Neniri.App.Backend:Registration':
-      matcher: 'method(Neniri\App\Controller\Backend\RegistrationController->(?!initialize).*Action())'
+    'Neniri.App:Registration':
+      matcher: 'method(Neniri\App\Controller\RegistrationController->(?!initialize).*Action())'
 
     # Backend - Protected
     'Neniri.App.Backend:Standard':
@@ -33,13 +33,13 @@ roles:
         privilegeTarget: 'Neniri.App.Frontend:Standard'
         permission: GRANT
       -
-        privilegeTarget: 'Neniri.App.Backend:Login'
+        privilegeTarget: 'Neniri.App:Login'
         permission: GRANT
       -
-        privilegeTarget: 'Neniri.App.Backend:PasswordForgotten'
+        privilegeTarget: 'Neniri.App:PasswordForgotten'
         permission: GRANT
       -
-        privilegeTarget: 'Neniri.App.Backend:Registration'
+        privilegeTarget: 'Neniri.App:Registration'
         permission: GRANT
 
   # For User

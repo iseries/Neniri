@@ -16,7 +16,7 @@
 # Frontend
 -
   name:  'Frontend'
-  uriPattern: '<FrontendSubRoutes>'
+  uriPattern: 'system/<FrontendSubRoutes>'
   defaults:
     '@package': 'Neniri.App'
     '@action': 'index'
@@ -25,3 +25,54 @@
     'FrontendSubRoutes':
       package: 'Neniri.App'
       suffix:  'Frontend'
+
+##
+# Default
+-
+  name: 'Sign up'
+  uriPattern: 'signup'
+  defaults:
+    '@package': 'Neniri.App'
+    '@controller': 'Registration'
+    '@action': 'index'
+    '@format': 'html'
+  httpMethods: [GET]
+
+-
+  name: 'Password forgotten'
+  uriPattern: 'reset'
+  defaults:
+    '@package': 'Neniri.App'
+    '@controller': 'PasswordForgotten'
+    '@action': 'index'
+    '@format': 'html'
+  httpMethods: [GET]
+
+-
+  name: 'Login'
+  uriPattern: 'login'
+  defaults:
+    '@package': 'Neniri.App'
+    '@controller': 'Login'
+    '@action': 'index'
+    '@format': 'html'
+  httpMethods: [GET]
+
+-
+  name: 'Logout'
+  uriPattern: 'logout'
+  defaults:
+    '@controller': 'Login'
+    '@action': 'logout'
+    '@format': 'html'
+  httpMethods: [POST]
+
+-
+  name: 'Authenticate'
+  uriPattern: 'authenticate'
+  defaults:
+    '@package': 'Neniri.App'
+    '@controller': 'Login'
+    '@action': 'authenticate'
+    '@format': 'html'
+  httpMethods: [POST]

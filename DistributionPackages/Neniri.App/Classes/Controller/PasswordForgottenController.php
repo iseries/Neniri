@@ -1,17 +1,17 @@
 <?php
-namespace Neniri\App\Controller\Backend;
+namespace Neniri\App\Controller;
 
 /*
  * This file is part of the Neniri.App package.
  */
 
-use Neniri\App\Controller\Backend\AbstractBaseController;
+use Neniri\App\Controller\Backend\AbstractBackendController;
 use Neos\Flow\Annotations as Flow;
 
 /**
  * @author Rene Rehme <contact@renerehme.de>
  */
-class PasswordForgottenController extends AbstractBaseController
+class PasswordForgottenController extends AbstractBackendController
 {
     /**
      * @return void

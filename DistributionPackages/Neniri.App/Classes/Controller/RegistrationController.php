@@ -1,5 +1,5 @@
 <?php
-namespace Neniri\App\Controller\Backend;
+namespace Neniri\App\Controller;
 
 /*
  * This file is part of the Neniri.App package.
@@ -9,13 +9,13 @@ use Neniri\App\Domain\Model\RegistrationFlow;
 use Neniri\App\Domain\Repository\RegistrationFlowRepository;
 use Neos\FluidAdaptor\View\StandaloneView;
 use Neniri\App\Domain\Service\MailerService;
-use Neniri\App\Controller\Backend\AbstractBaseController;
+use Neniri\App\Controller\Backend\AbstractBackendController;
 use Neos\Flow\Annotations as Flow;
 
 /**
  * @author Rene Rehme <contact@renerehme.de>
  */
-class RegistrationController extends AbstractBaseController
+class RegistrationController extends AbstractBackendController
 {
     #[Flow\Inject]
     protected MailerService $mailerService;

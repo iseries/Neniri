@@ -1,5 +1,5 @@
 <?php
-namespace Neniri\App\Controller\Backend;
+namespace Neniri\App\Controller\Frontend;
 
 /*
  * This file is part of the Neniri.App package.
@@ -14,7 +14,7 @@ use Neos\Flow\Security\Context;
 /**
  * @author Rene Rehme <contact@renerehme.de>
  */
-abstract class AbstractBaseController extends ActionController
+abstract class AbstractFrontendController extends ActionController
 {
     #[Flow\Inject]
     protected Context $securityContext;
@@ -34,15 +34,5 @@ abstract class AbstractBaseController extends ActionController
      */
     protected function initializeView(ViewInterface $view) {
 
-    }
-
-    /**
-     * Disable the technical error flash message
-     *
-     * @return boolean
-     */
-    protected function getErrorFlashMessage()
-    {
-        return false;
     }
 }

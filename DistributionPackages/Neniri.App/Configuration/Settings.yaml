@@ -27,6 +27,6 @@ Neos:
             entryPointOptions:
               routeValues:
                 '@package': 'Neniri.App'
-                '@controller': 'Backend\Login'
+                '@controller': 'Login'
                 '@action': 'index'
                 '@format': 'html'

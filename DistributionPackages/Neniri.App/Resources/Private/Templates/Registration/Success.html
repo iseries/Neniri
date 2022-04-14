@@ -1,4 +1,4 @@
-<f:layout name="BackendLogin" />
+<f:layout name="Default" />
 
 <f:section name="Title">Signup - Success</f:section>
 
@@ -8,6 +8,6 @@
             <h1 class="font-bold text-blue-900 text-xl text-center">Ok, you got an email!</h1>
             <h2 class="mb-4 text-md text-center">Check your mails and klick the link<br>to confirm and finish your registration.</h2>
         </div>
-        {f:render(partial: 'Backend/Components/Links', arguments: { pwForgotten: true, login: true, signup: false })}
+        {f:render(partial: 'Components/Links', arguments: { pwForgotten: true, login: true, signup: false })}
     </div>
 </f:section>

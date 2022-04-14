@@ -1,5 +1,5 @@
 <?php
-namespace Neniri\App\Controller\Backend;
+namespace Neniri\App\Controller;
 
 /*
  * This file is part of the Neniri.App package.
