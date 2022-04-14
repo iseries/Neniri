@@ -57,8 +57,8 @@ class PasswordDto
     public function cryptPassword(): string
     {
         $encrypted = $this->hashService->hashPassword($this->password);
-        $this->password = null;
-        $this->passwordConfirmation = null;
+        $this->password = '';
+        $this->passwordConfirmation = '';
         return $encrypted;
     }
 }

@@ -9,13 +9,13 @@ use Neniri\App\Domain\Model\RegistrationFlow;
 use Neniri\App\Domain\Repository\RegistrationFlowRepository;
 use Neos\FluidAdaptor\View\StandaloneView;
 use Neniri\App\Domain\Service\MailerService;
-use Neniri\App\Controller\Backend\AbstractBackendController;
+use Neniri\App\Controller\AbstractBaseController;
 use Neos\Flow\Annotations as Flow;
 
 /**
  * @author Rene Rehme <contact@renerehme.de>
  */
-class RegistrationController extends AbstractBackendController
+class RegistrationController extends AbstractBaseController
 {
     #[Flow\Inject]
     protected MailerService $mailerService;

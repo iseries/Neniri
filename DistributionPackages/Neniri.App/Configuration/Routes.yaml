@@ -1,5 +1,15 @@
+-
+  name: 'Homepage'
+  uriPattern: ''
+  defaults:
+    '@package': 'Neniri.App'
+    '@controller': 'Standard'
+    '@action': 'index'
+    '@format': 'html'
+
 ##
 # Backend
+
 -
   name:  'Backend'
   uriPattern: 'neniri/<BackendSubRoutes>'
@@ -14,6 +24,7 @@
 
 ##
 # Frontend
+
 -
   name:  'Frontend'
   uriPattern: 'system/<FrontendSubRoutes>'
@@ -28,6 +39,7 @@
 
 ##
 # Default
+
 -
   name: 'Sign up'
   uriPattern: 'signup'

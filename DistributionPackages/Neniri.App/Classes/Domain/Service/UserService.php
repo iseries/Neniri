@@ -10,6 +10,7 @@ use Neniri\App\Domain\Repository\UserRepository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\Exception\InvalidQueryException;
 use Neos\Flow\Persistence\QueryResultInterface;
+use Neos\Flow\Security\Account;
 use Neos\Flow\Security\AccountRepository;
 use Neos\Neos\Utility\User as UserUtility;
 
@@ -55,19 +56,31 @@ class UserService
     }
 
     /**
-     * Retrieves an existing user by the given username
+     * Retrieves an existing user by email
      *
      * @param string $email
      * @return User|null
      * @api
      */
-    public function getUser(string $email): ?User
+    public function getUserByEmail(string $email): ?User
     {
         $account = $this->accountRepository->findByAccountIdentifierAndAuthenticationProviderName($email, $this->employeeAuthenticationProviderName);
         if ($account === null) {
             return null;
         }
 
+        return $this->getUserByAccount($account);
+    }
+
+    /**
+     * Retrieves an existing user by Account
+     *
+     * @param Account $account
+     * @return User|null
+     * @api
+     */
+    public function getUserByAccount(Account $account): ?User
+    {
         return $this->userRepository->findOneByAccount($account);
     }
 
@@ -80,7 +93,7 @@ class UserService
      */
     public function removeUser(string $email): bool
     {
-        $user = $this->getUser($email);
+        $user = $this->getUserByEmail($email);
         if($user) {
             $this->userRepository->remove($user);
             return true;
