@@ -11,9 +11,9 @@ use Neos\Flow\Security\Account;
 use Neos\Flow\Security\Cryptography\HashService;
 
 /**
- * @author Rene Rehme <contact@renerehme.de>
  * @Flow\Entity
  * @ORM\InheritanceType("JOINED")
+ * @author Rene Rehme <contact@renerehme.de>
  */
 class User
 {

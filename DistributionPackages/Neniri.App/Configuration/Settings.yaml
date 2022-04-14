@@ -1,5 +1,9 @@
 Neniri:
   App:
+    # how long is the activation token valid?
+    activationTokenTimeout: '4 days'
+    # how long is the password token valid?
+    resetPasswordTokenTimeout: '1 day'
 
 Neos:
   Flow:

@@ -14,27 +14,23 @@ use Neos\Flow\Security\Cryptography\HashService;
  */
 class PasswordDto
 {
-    /**
-     * @Flow\Inject
-     * @var HashService
-     */
-    protected $hashService;
+    #[Flow\Inject]
+    protected HashService $hashService;
 
     /**
      * @var string
      */
-    protected $password;
+    protected string $password;
 
     /**
      * @var string
      */
-    protected $passwordConfirmation;
-
+    protected string $passwordConfirmation;
 
     /**
      * @param string $password
      */
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
         $this->password = $password;
     }
@@ -42,7 +38,7 @@ class PasswordDto
     /**
      * @param string $passwordConfirmation
      */
-    public function setPasswordConfirmation($passwordConfirmation)
+    public function setPasswordConfirmation(string $passwordConfirmation)
     {
         $this->passwordConfirmation = $passwordConfirmation;
     }
@@ -50,7 +46,7 @@ class PasswordDto
     /**
      * @return bool
      */
-    public function isPasswordEqual()
+    public function isPasswordEqual(): bool
     {
         if($this->password === $this->passwordConfirmation) {
             return true;
@@ -58,7 +54,7 @@ class PasswordDto
         return false;
     }
 
-    public function cryptPassword()
+    public function cryptPassword(): string
     {
         $encrypted = $this->hashService->hashPassword($this->password);
         $this->password = null;
