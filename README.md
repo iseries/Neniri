@@ -2,6 +2,9 @@ Neniri
 ================
 
 A simple ticketing system based on the PHP framework Neos Flow.
+
+⚠️ **This package is under development.** ⚠️
+
 Customers create tickets that are prepared graphically and functionally for internal processing.
 
 With Neniri you create projects to which you can assign incoming tickets. Tickets can be assigned to user accounts. There is also an option to connect Git to created projects.
