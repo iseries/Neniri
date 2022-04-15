@@ -1,4 +1,4 @@
-Neniri
+Neniri - Ticketing System
 ================
 
 ⚠️ **This package is under development.** ⚠️
