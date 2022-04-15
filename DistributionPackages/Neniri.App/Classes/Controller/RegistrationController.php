@@ -126,13 +126,13 @@ class RegistrationController extends AbstractBaseController
         $registrationFlow = $this->registrationFlowRepository->findOneByActivationToken($token);
 
         if(!$registrationFlow) {
-            // registration flow not found. Token not valid!
-            $this->redirect('activateAccountError', null, null, array('error' => 'TOKEN_NOT_VALID'));
+            // Token not valid!
+            $this->view->assign('error', array('error' => 'TOKEN_NOT_VALID'));
         }
 
         if(!$registrationFlow->hasValidActivationToken()) {
-            // token expired
-            $this->redirect('activateAccountError', null, null, array('error' => 'TOKEN_EXPIRED'));
+            // Token expired
+            $this->view->assign('error', array('error' => 'TOKEN_EXPIRED'));
         }
 
         $this->view->assign('registrationFlow', $registrationFlow);
@@ -150,7 +150,7 @@ class RegistrationController extends AbstractBaseController
 
         if(!$passwordDto->isPasswordEqual()) {
             // password is not equal
-
+            $this->redirect('activateAccount', null, null, array('error' => 'PASSWORD_NOT_EQUAL'));
         }
 
         // create user
@@ -163,15 +163,5 @@ class RegistrationController extends AbstractBaseController
     public function activateAccountSuccessAction()
     {
 
-    }
-
-    /**
-     * Could not activate an account
-     *
-     * @param string $error
-     */
-    public function activateAccountErrorAction(string $error)
-    {
-        $this->view->assign('error', $error);
     }
 }
