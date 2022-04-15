@@ -5,8 +5,10 @@ namespace Neniri\App\Controller;
  * This file is part of the Neniri.App package.
  */
 
+use Neniri\App\Domain\Model\PasswordDto;
 use Neniri\App\Domain\Model\RegistrationFlow;
 use Neniri\App\Domain\Repository\RegistrationFlowRepository;
+use Neniri\App\Domain\Service\UserCreationService;
 use Neos\FluidAdaptor\View\StandaloneView;
 use Neniri\App\Domain\Service\MailerService;
 use Neniri\App\Controller\AbstractBaseController;
@@ -19,6 +21,9 @@ class RegistrationController extends AbstractBaseController
 {
     #[Flow\Inject]
     protected MailerService $mailerService;
+
+    #[Flow\Inject]
+    protected UserCreationService $userCreationService;
 
     #[Flow\Inject]
     protected RegistrationFlowRepository $registrationFlowRepository;
@@ -113,9 +118,60 @@ class RegistrationController extends AbstractBaseController
      * Activate an account
      *
      * @param string $token
+     * @param array $errors
      */
-    public function activateAccountAction($token)
+    public function activateAccountAction(string $token, array $errors = array())
     {
-        \Neos\Flow\var_dump($token);
+        // try to find registrationFlow by token
+        $registrationFlow = $this->registrationFlowRepository->findOneByActivationToken($token);
+
+        if(!$registrationFlow) {
+            // registration flow not found. Token not valid!
+            $this->redirect('activateAccountError', null, null, array('error' => 'TOKEN_NOT_VALID'));
+        }
+
+        if(!$registrationFlow->hasValidActivationToken()) {
+            // token expired
+            $this->redirect('activateAccountError', null, null, array('error' => 'TOKEN_EXPIRED'));
+        }
+
+        $this->view->assign('registrationFlow', $registrationFlow);
+    }
+
+    /**
+     * Create a user and remove the given registrationFlow
+     * @param RegistrationFlow $registrationFlow
+     */
+    public function activateAccountProcessAction(RegistrationFlow $registrationFlow)
+    {
+        $passwordDto = new PasswordDto();
+        $passwordDto->setPassword($this->request->getArgument('password'));
+        $passwordDto->setPasswordConfirmation($this->request->getArgument('passwordRepeat'));
+
+        if(!$passwordDto->isPasswordEqual()) {
+            // password is not equal
+
+        }
+
+        // create user
+        $this->userCreationService->createAccountAndUser($registrationFlow->getEmail(), $passwordDto->cryptPassword(), 'Neniri.App:Customer');
+    }
+
+    /**
+     * Account was activated
+     */
+    public function activateAccountSuccessAction()
+    {
+
+    }
+
+    /**
+     * Could not activate an account
+     *
+     * @param string $error
+     */
+    public function activateAccountErrorAction(string $error)
+    {
+        $this->view->assign('error', $error);
     }
 }

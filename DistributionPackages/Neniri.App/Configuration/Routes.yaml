@@ -88,3 +88,14 @@
     '@action': 'authenticate'
     '@format': 'html'
   httpMethods: [POST]
+
+-
+  name: 'Activate Account'
+  uriPattern: 'activate'
+  defaults:
+    '@package': 'Neniri.App'
+    '@controller': 'Registration'
+    '@action': 'activateAccount'
+    '@format': 'html'
+  appendExceedingArguments: true
+  httpMethods: [GET]
