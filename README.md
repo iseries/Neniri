@@ -1,9 +1,9 @@
 Neniri
 ================
 
-A simple ticketing system based on the PHP framework Neos Flow.
-
 ⚠️ **This package is under development.** ⚠️
+
+A simple ticketing system based on the PHP framework Neos Flow.
 
 Customers create tickets that are prepared graphically and functionally for internal processing.
 
