@@ -127,14 +127,14 @@ class RegistrationController extends AbstractBaseController
 
         // Check if registrationFlow is given
         if(!$registrationFlow) {
-            $this->addFlashMessage('Your activation token could not be found. Please sign up to get a new one.', '', Message::SEVERITY_ERROR, array(), '1650090993');
-            $this->redirect('index', 'Login');
+            $this->addFlashMessage('Your activation token could not be found. Please sign up again to get a new activation token.', '', Message::SEVERITY_ERROR, array(), '1650090993');
+            $this->redirect('index', 'Registration');
         }
 
         // Check if token is expired
         if(!$registrationFlow->hasValidActivationToken()) {
             $this->addFlashMessage('Your activation token is expired. Please sign up again to get a new activation token.', '', Message::SEVERITY_ERROR, array(), '1650091858');
-            $this->redirect('index', 'Login');
+            $this->redirect('index', 'Registration');
         }
 
         $this->view->assign('registrationFlow', $registrationFlow);
