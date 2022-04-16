@@ -9,6 +9,7 @@ use Neniri\App\Domain\Model\PasswordDto;
 use Neniri\App\Domain\Model\RegistrationFlow;
 use Neniri\App\Domain\Repository\RegistrationFlowRepository;
 use Neniri\App\Domain\Service\UserCreationService;
+use Neos\Error\Messages\Message;
 use Neos\FluidAdaptor\View\StandaloneView;
 use Neniri\App\Domain\Service\MailerService;
 use Neniri\App\Controller\AbstractBaseController;
@@ -118,21 +119,22 @@ class RegistrationController extends AbstractBaseController
      * Activate an account
      *
      * @param string $token
-     * @param array $errors
      */
-    public function activateAccountAction(string $token, array $errors = array())
+    public function activateAccountAction(string $token)
     {
-        // try to find registrationFlow by token
+        // Find a registrationFlow by token
         $registrationFlow = $this->registrationFlowRepository->findOneByActivationToken($token);
 
+        // Check if registrationFlow is given
         if(!$registrationFlow) {
-            // Token not valid!
-            $this->view->assign('error', array('error' => 'TOKEN_NOT_VALID'));
+            $this->addFlashMessage('Your activation token could not be found. Please sign up to get a new one.', '', Message::SEVERITY_ERROR, array(), '1650090993');
+            $this->redirect('index', 'Login');
         }
 
+        // Check if token is expired
         if(!$registrationFlow->hasValidActivationToken()) {
-            // Token expired
-            $this->view->assign('error', array('error' => 'TOKEN_EXPIRED'));
+            $this->addFlashMessage('Your activation token is expired. Please sign up again to get a new activation token.', '', Message::SEVERITY_ERROR, array(), '1650091858');
+            $this->redirect('index', 'Login');
         }
 
         $this->view->assign('registrationFlow', $registrationFlow);
@@ -150,7 +152,8 @@ class RegistrationController extends AbstractBaseController
 
         if(!$passwordDto->isPasswordEqual()) {
             // password is not equal
-            $this->redirect('activateAccount', null, null, array('error' => 'PASSWORD_NOT_EQUAL'));
+            $this->addFlashMessage('TOKEN_EXPIRED', '', Message::SEVERITY_ERROR);
+            $this->redirect('activateAccount');
         }
 
         // create user

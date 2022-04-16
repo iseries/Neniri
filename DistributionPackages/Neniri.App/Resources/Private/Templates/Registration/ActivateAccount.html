@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:f="http://typo3.org/ns/Neos/FluidAdaptor/ViewHelpers"
+      xmlns="http://www.w3.org/1999/xhtml"
+      lang="en">
+
+<f:layout name="Default" />
+
+<f:section name="Title">Activate Account</f:section>
+
+<f:section name="Content">
+    <div class="login-inner">
+        <div>
+            <h1 class="font-bold mb-2 text-blue-900 text-xl text-center">One last step to activate your Account</h1>
+            <h2 class="mb-4 text-md text-center">
+                Please complete your profile to finish the registration.
+            </h2>
+        </div>
+        {f:render(partial: 'Components/DefaultFooterLinks', arguments: { pwForgotten: true, login: true, signup: true })}
+    </div>
+</f:section>
+
+</html>
