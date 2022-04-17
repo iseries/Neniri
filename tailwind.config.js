@@ -1,6 +1,6 @@
 module.exports = {
 	content: [
-		'./DistributionPackages/Neniri.App/Resources/Private/Partials/Backend/*/*.html',
+		'./DistributionPackages/Neniri.App/Resources/Private/Partials/*/*.html',
 		'./DistributionPackages/Neniri.App/Resources/Private/Layouts/*.html',
 		'./DistributionPackages/Neniri.App/Resources/Private/Templates/*/*.html',
 		'./DistributionPackages/Neniri.App/Resources/Private/Templates/Backend/*/*.html',

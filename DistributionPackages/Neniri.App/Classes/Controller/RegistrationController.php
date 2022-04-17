@@ -7,6 +7,7 @@ namespace Neniri\App\Controller;
 
 use Neniri\App\Domain\Model\PasswordDto;
 use Neniri\App\Domain\Model\RegistrationFlow;
+use Neniri\App\Domain\Model\User;
 use Neniri\App\Domain\Repository\RegistrationFlowRepository;
 use Neniri\App\Domain\Service\UserCreationService;
 use Neos\Error\Messages\Message;
@@ -142,6 +143,7 @@ class RegistrationController extends AbstractBaseController
 
     /**
      * Create a user and remove the given registrationFlow
+     *
      * @param RegistrationFlow $registrationFlow
      */
     public function activateAccountProcessAction(RegistrationFlow $registrationFlow)
@@ -152,19 +154,15 @@ class RegistrationController extends AbstractBaseController
 
         if(!$passwordDto->isPasswordEqual()) {
             // password is not equal
-            $this->addFlashMessage('TOKEN_EXPIRED', '', Message::SEVERITY_ERROR);
-            $this->redirect('activateAccount');
+            $this->addFlashMessage('Password and confirmation does not match.', '', Message::SEVERITY_ERROR, array(), '1650102970');
+            $this->redirect('activateAccount', null, null, array('token' => $registrationFlow->getActivationToken()));
         }
 
-        // create user
-        $this->userCreationService->createAccountAndUser($registrationFlow->getEmail(), $passwordDto->cryptPassword(), 'Neniri.App:Customer');
-    }
+        // create user and remove registrationFlow
+        //$this->userCreationService->createAccountAndUser($registrationFlow->getEmail(), $passwordDto->cryptPassword(), 'Neniri.App:Customer');
+        //$this->registrationFlowRepository->remove($registrationFlow);
+        $this->addFlashMessage('Your account was finally created and activated. You can log in now.', '', Message::SEVERITY_OK, array(), '1650109374');
 
-    /**
-     * Account was activated
-     */
-    public function activateAccountSuccessAction()
-    {
-
+        $this->redirect('index', 'Login');
     }
 }
