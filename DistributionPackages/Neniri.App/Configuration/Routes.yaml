@@ -102,7 +102,7 @@
 
 -
   name: 'Authenticate Process'
-  uriPattern: 'activateProcess/{registrationFlow}'
+  uriPattern: 'activate/process/{registrationFlow}'
   defaults:
     '@package': 'Neniri.App'
     '@controller': 'Registration'

@@ -62,10 +62,10 @@ class UserCreationService
         if(empty($additionalData)) {
             $additionalData = $this->additionalData;
         }
-        $user->setFirstName($additionalData['firstname']);
-        $user->setLastName($additionalData['lastname']);
-        $user->setCompany($additionalData['company']);
-        $user->setPhone($additionalData['phone']);
+        $user->setFirstName(($additionalData['firstname'] ?? ''));
+        $user->setLastName(($additionalData['lastname'] ?? ''));
+        $user->setCompany(($additionalData['company'] ?? ''));
+        $user->setPhone(($additionalData['phone'] ?? ''));
 
         // Add user
         $this->userRepository->add($user);

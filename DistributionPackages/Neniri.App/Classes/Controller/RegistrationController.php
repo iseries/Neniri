@@ -158,10 +158,16 @@ class RegistrationController extends AbstractBaseController
             $this->redirect('activateAccount', null, null, array('token' => $registrationFlow->getActivationToken()));
         }
 
+        // additional data
+        $additionalData = array(
+            'firstname' => $this->request->getArgument('firstname'),
+            'lastname' => $this->request->getArgument('lastname'),
+        );
+
         // create user and remove registrationFlow
-        //$this->userCreationService->createAccountAndUser($registrationFlow->getEmail(), $passwordDto->cryptPassword(), 'Neniri.App:Customer');
-        //$this->registrationFlowRepository->remove($registrationFlow);
-        $this->addFlashMessage('Your account was finally created and activated. You can log in now.', '', Message::SEVERITY_OK, array(), '1650109374');
+        $this->userCreationService->createAccountAndUser($registrationFlow->getEmail(), $passwordDto->cryptPassword(), 'Neniri.App:Customer', $additionalData);
+        $this->registrationFlowRepository->remove($registrationFlow);
+        $this->addFlashMessage('Your account was created and activated. You can log in now.', '', Message::SEVERITY_OK, array(), '1650109374');
 
         $this->redirect('index', 'Login');
     }
