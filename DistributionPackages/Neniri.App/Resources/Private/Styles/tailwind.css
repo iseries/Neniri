@@ -39,7 +39,7 @@ html, body {
 }
 
 .custom-bg {
-    @apply absolute top-24 -z-10 h-2/3 w-full bg-green-500 bg-gradient-to-b from-white to-indigo-200;
+    @apply absolute top-24 -z-10 h-2/3 w-full bg-gradient-to-b from-white to-indigo-200;
     transform: skew(0, -10deg) translateY(-24%);
 }
 

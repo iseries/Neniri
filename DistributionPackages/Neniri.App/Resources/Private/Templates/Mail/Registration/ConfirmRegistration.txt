@@ -1,1 +1,1 @@
-test {activationLink}
+You're almost ready to start using our ticketing system. Copy the following URL in your browser window: {activationLink}

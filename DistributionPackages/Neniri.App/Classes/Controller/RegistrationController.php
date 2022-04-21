@@ -87,7 +87,7 @@ class RegistrationController extends AbstractBaseController
            'replyTo' => '',
            'cc' => '',
            'bcc' => '',
-           'subject' => '💡 Confirm your registration',
+           'subject' => '💡 Please verify your email',
            'body' => $fluid->render(),
         );
         $this->mailerService->send($mailerProperties);
