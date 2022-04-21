@@ -75,11 +75,17 @@ class RegistrationController extends AbstractBaseController
         $activationLink = $this->uriBuilder->reset()->setCreateAbsoluteUri(true)->uriFor('activateAccount', ['token' => $registrationFlow->getActivationToken()],'Registration');
 
         // create and send email
-        $fluid = new StandaloneView();
-        $fluid->setFormat('html');
-        $fluid->setLayoutRootPath('resource://Neniri.App/Private/Templates/Mail/Layouts/');
-        $fluid->setTemplatePathAndFilename('resource://Neniri.App/Private/Templates/Mail/Registration/ConfirmRegistration.html');
-        $fluid->assign('activationLink', $activationLink);
+        $htmlTemplate = new StandaloneView();
+        $htmlTemplate->setFormat('html');
+        $htmlTemplate->setLayoutRootPath('resource://Neniri.App/Private/Templates/Mail/Layouts/');
+        $htmlTemplate->setTemplatePathAndFilename('resource://Neniri.App/Private/Templates/Mail/Registration/ConfirmRegistration.html');
+        $htmlTemplate->assign('activationLink', $activationLink);
+
+        $txtTemplate = new StandaloneView();
+        $txtTemplate->setFormat('txt');
+        $txtTemplate->setLayoutRootPath('resource://Neniri.App/Private/Templates/Mail/Layouts/');
+        $txtTemplate->setTemplatePathAndFilename('resource://Neniri.App/Private/Templates/Mail/Registration/ConfirmRegistration.txt');
+        $txtTemplate->assign('activationLink', $activationLink);
 
         $mailerProperties = array(
            'from' => $this->from,
@@ -88,7 +94,8 @@ class RegistrationController extends AbstractBaseController
            'cc' => '',
            'bcc' => '',
            'subject' => '💡 Please verify your email',
-           'body' => $fluid->render(),
+           'body' => $htmlTemplate->render(),
+           'bodyText' => $txtTemplate->render(),
         );
         $this->mailerService->send($mailerProperties);
 

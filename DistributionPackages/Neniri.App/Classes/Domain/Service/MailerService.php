@@ -66,6 +66,7 @@ class MailerService
         $email->to(new Address($props['to']));
         $email->subject($props['subject']);
         $email->html($props['body']);
+        $email->text($props['bodyText']);
 
         if (!empty($props['cc'])) {
             $email->cc(new Address($props['cc']));
